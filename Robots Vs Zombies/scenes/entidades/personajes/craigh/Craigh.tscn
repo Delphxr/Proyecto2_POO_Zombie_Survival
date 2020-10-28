@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/entidades/personajes/Personaje.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/entidades/personajes/craigh/Craigh.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -33,17 +34,26 @@ animations = [ {
 } ]
 
 [node name="Craigh" instance=ExtResource( 1 )]
+position = Vector2( 0, 32 )
 
-[node name="sombra" parent="." index="0"]
+[node name="Light2D" parent="." index="0"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 4 )
+texture_scale = 0.1
+mode = 2
+shadow_gradient_length = 15.0
+
+[node name="sombra" parent="." index="1"]
 modulate = Color( 1, 1, 1, 0.298039 )
-position = Vector2( 1.66893e-06, -8 )
-scale = Vector2( 1.5, 2.25823 )
+position = Vector2( 0, -16 )
+scale = Vector2( 1, 1.25 )
 texture = ExtResource( 3 )
 
-[node name="AnimatedSprite" parent="." index="1"]
-position = Vector2( -4.23516e-22, -24 )
+[node name="AnimatedSprite" parent="." index="2"]
+position = Vector2( -1.50463e-36, -32 )
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 6 )
 animation = "IDLE"
-frame = 3
+frame = 1
 speed_scale = 2.5
 playing = true

@@ -35,7 +35,7 @@ func _process(_delta):
 		_path.remove(0)
 		
 		if len(_path) == 0 or _pasos == 0: #revisamos si llegamos al lugar, o nos quedamos sin turnos
-			position = _target_point_world
+			position = _target_point_world #esto es para quedarnos centrados en la casilla
 			rotation = 0
 			_change_state(Estado.IDLE)
 			return
