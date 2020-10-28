@@ -1,8 +1,8 @@
 extends Area2D
 
 var _velocity = Vector2()
-var MASA = 2
-const ARRIVE_DISTANCE = 2.0
+export var MASA = 2
+const ARRIVE_DISTANCE = 2.0 #el offset aleatorio que va a tener del centro del tile
 
 
 #   esto nos movemos, dada la posicion que queremos
