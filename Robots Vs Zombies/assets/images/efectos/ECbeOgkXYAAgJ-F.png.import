@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/obstaco2.png-90a48b5d30a2804ffe4062ec22147397.stex"
+path="res://.import/ECbeOgkXYAAgJ-F.png-c8285ef1950e79fe06b9e1f8d116c043.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tiles/obstaco2.png"
-dest_files=[ "res://.import/obstaco2.png-90a48b5d30a2804ffe4062ec22147397.stex" ]
+source_file="res://assets/images/efectos/ECbeOgkXYAAgJ-F.png"
+dest_files=[ "res://.import/ECbeOgkXYAAgJ-F.png-c8285ef1950e79fe06b9e1f8d116c043.stex" ]
 
 [params]
 

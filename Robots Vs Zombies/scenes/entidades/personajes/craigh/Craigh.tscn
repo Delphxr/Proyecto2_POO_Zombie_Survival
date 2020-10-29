@@ -37,22 +37,27 @@ animations = [ {
 position = Vector2( 0, 32 )
 
 [node name="Light2D" parent="." index="0"]
-position = Vector2( 0, -8 )
+position = Vector2( 0, -24 )
 texture = ExtResource( 4 )
-texture_scale = 0.1
+texture_scale = 0.09
+color = Color( 1, 0.933333, 0.788235, 1 )
 mode = 2
+range_item_cull_mask = 3
 shadow_gradient_length = 15.0
 
 [node name="sombra" parent="." index="1"]
 modulate = Color( 1, 1, 1, 0.298039 )
+light_mask = 0
 position = Vector2( 0, -16 )
 scale = Vector2( 1, 1.25 )
 texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="2"]
-position = Vector2( -1.50463e-36, -32 )
+light_mask = 2
+position = Vector2( 0, -32 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 6 )
 animation = "IDLE"
+frame = 4
 speed_scale = 2.5
 playing = true

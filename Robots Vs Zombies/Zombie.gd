@@ -1,6 +1,7 @@
 extends "res://scripts/entidades/entidad.gd"
 
 
+
 # Variables modificables
 export var _ataque = 0
 export var _vida = 0
@@ -48,7 +49,7 @@ func _unhandled_input(event):
 		_pasos = _rango #reiniciamos la cantidad de pasos
 		var global_mouse_pos = get_global_mouse_position()
 	
-		_target_position = global_mouse_pos
+		_target_position = get_parent().get_node("Craigh").global_position
 		
 		_change_state(Estado.FOLLOW)
 
