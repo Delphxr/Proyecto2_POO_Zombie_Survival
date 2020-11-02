@@ -47,7 +47,7 @@ func _process(_delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("click"):
 		_pasos = _rango #reiniciamos la cantidad de pasos
-		var global_mouse_pos = get_global_mouse_position()
+		
 	
 		_target_position = get_parent().get_node("Craigh").global_position
 		
