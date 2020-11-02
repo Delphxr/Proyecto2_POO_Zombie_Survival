@@ -31,11 +31,9 @@ texture = ExtResource( 5 )
 texture_scale = 0.46
 color = Color( 0, 0.415686, 1, 1 )
 mode = 2
-range_item_cull_mask = 3
 shadow_item_cull_mask = 0
 
 [node name="filtro oscuridad" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -47,39 +45,29 @@ script = ExtResource( 2 )
 map_size = Vector2( 300, 300 )
 
 [node name="Light2D" type="Light2D" parent="TileMap"]
-position = Vector2( 1104.05, 759.474 )
+position = Vector2( 1105.77, 763.483 )
 scale = Vector2( 0.17977, 0.0897501 )
 texture = ExtResource( 5 )
 texture_scale = 1.52
 color = Color( 1, 0, 0, 1 )
-energy = 1.17
+energy = 1.33
 shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
 
+[node name="EnemigoA" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1105.94, 484.121 )
+MASA = 5
+_rango = 1
+speed = 100
+
 [node name="Craigh" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1071.18, 662.4 )
-_rango = 10
+light_mask = 1
+position = Vector2( 1041.46, 622.413 )
+_rango = 5
 speed = 100
 
 [node name="Camera2D" type="Camera2D" parent="Craigh"]
 position = Vector2( -3.5443, -26.675 )
 current = true
 smoothing_enabled = true
-
-[node name="EnemigoA" parent="." instance=ExtResource( 7 )]
-position = Vector2( 500.855, 603.704 )
-MASA = 5
-_rango = 3
-speed = 100
-
-[node name="EnemigoA2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 910.854, 519.704 )
-MASA = 5
-_rango = 3
-speed = 100
-
-[node name="EnemigoA3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1459.85, 581.704 )
-MASA = 5
-_rango = 3
-speed = 100
+[connection signal="area_entered" from="Craigh" to="EnemigoA" method="_on_Craigh_area_entered"]

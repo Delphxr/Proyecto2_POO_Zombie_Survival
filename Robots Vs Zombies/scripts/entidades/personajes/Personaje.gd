@@ -75,3 +75,5 @@ func _change_state(new_state):
 	if new_state == Estado.IDLE:
 		casilla_act = position
 		print(casilla_act)
+
+

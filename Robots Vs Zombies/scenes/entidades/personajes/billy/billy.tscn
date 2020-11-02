@@ -19,10 +19,10 @@ extents = Vector2( 2, 2 )
 script = ExtResource( 3 )
 _rango = 20
 
-[node name="AnimatedSprite" parent="." index="0"]
+[node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 1 )
 animation = "Billy"
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="3"]
 scale = Vector2( 12, 12 )
 shape = SubResource( 2 )

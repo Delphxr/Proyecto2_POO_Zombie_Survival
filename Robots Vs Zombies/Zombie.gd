@@ -46,12 +46,14 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("click"):
-		_pasos = _rango #reiniciamos la cantidad de pasos
+		if  overlaps_area(get_parent().get_node("Craigh")):
+			print("detectado")
+			_pasos = _rango #reiniciamos la cantidad de pasos
+			
 		
-	
-		_target_position = get_parent().get_node("Craigh").global_position
-		
-		_change_state(Estado.FOLLOW)
+			_target_position = get_parent().get_node("Craigh").global_position
+			
+			_change_state(Estado.FOLLOW)
 
 
 
@@ -76,3 +78,7 @@ func _change_state(new_state):
 	if new_state == Estado.IDLE:
 		casilla_act = position
 		print(casilla_act)
+
+
+func _on_Craigh_area_entered(area):
+	pass # Replace with function body.
