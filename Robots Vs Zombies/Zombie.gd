@@ -80,5 +80,3 @@ func _change_state(new_state):
 		print(casilla_act)
 
 
-func _on_Craigh_area_entered(area):
-	pass # Replace with function body.
