@@ -25,6 +25,11 @@ const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn")
 ]
 
+var zonas = [
+	Vector2(848,400),
+	Vector2(752,912)
+]
+
 func _ready():
 	spawn()
 	pass
@@ -50,7 +55,8 @@ func spawn():
 		randomize()
 		
 		var enemy = choose(enemies).instance()
-		enemy.position = get_node("Craigh").global_position
+		enemy.position = choose(zonas)
 		add_child(enemy)
+		print ("enemigo generado")
 		yield(create_timer(rand_range(5, 10)), "timeout")
 	pass
