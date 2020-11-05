@@ -8,29 +8,29 @@
 [sub_resource type="CanvasItemMaterial" id=9]
 light_mode = 2
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
 "name": "IDLE",
 "speed": 5.0
@@ -42,24 +42,26 @@ extents = Vector2( 8, 8 )
 [node name="Craigh" instance=ExtResource( 1 )]
 light_mask = 3
 position = Vector2( 0, 32 )
+MASA = 5
+speed = 100
 
 [node name="Light2D" parent="." index="0"]
 position = Vector2( 0, -16 )
 texture = ExtResource( 4 )
 texture_scale = 0.09
-color = Color( 1, 0.933333, 0.788235, 1 )
+color = Color( 0.835294, 0.87451, 0.890196, 1 )
 mode = 2
 shadow_gradient_length = 15.0
 
 [node name="AnimatedSprite" parent="." index="1"]
 light_mask = 1
 material = SubResource( 9 )
-position = Vector2( 0, -32 )
+position = Vector2( 0, -20 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 15 )
 animation = "IDLE"
-frame = 4
-speed_scale = 2.5
+frame = 1
+speed_scale = 2.0
 playing = true
 
 [node name="CollisionShape2D" parent="." index="2"]
@@ -69,6 +71,6 @@ shape = SubResource( 8 )
 modulate = Color( 1, 1, 1, 0.298039 )
 light_mask = 0
 material = null
-position = Vector2( 0, -16 )
-scale = Vector2( 1, 1.25 )
+position = Vector2( -8.34465e-07, -12 )
+scale = Vector2( 0.75, 1.25 )
 texture = ExtResource( 3 )

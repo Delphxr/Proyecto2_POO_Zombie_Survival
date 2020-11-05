@@ -8,15 +8,7 @@ var turno = 1
 export var max_turnos = 2
 
 # Called when the node enters the scene tree for the first time.
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_up"):
-		turno = 1
-		print("turno")
-	elif event.is_action_pressed("ui_down"):
-		turno = 0
-		print("no turno")
-	
-	return turno
+
 
 # ----------------------------------------------------------
 
@@ -25,6 +17,7 @@ const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn")
 ]
 
+#coordenadas de los puntos de generacion
 var zonas = [
 	Vector2(848,400),
 	Vector2(752,912)
@@ -40,23 +33,58 @@ func choose(choises):
 	return choises[rand_index]
 	pass
 	
-func create_timer(tiempo):
+	
+func spawn():
+	randomize()
+	
+	var enemy = choose(enemies).instance()
+	enemy.position = choose(zonas)
+	add_child(enemy)
+	print ("enemigo generado")
+	pass
+
+
+
+func create_timer(wait_time):
 	var timer = Timer.new()
-	timer.set_wait_time(tiempo)
+	timer.set_wait_time(wait_time)
 	timer.set_one_shot(true)
 	timer.connect("timeout", timer, "queue_free")
 	add_child(timer)
 	timer.start()
 	return timer
 	pass
-	
-func spawn():
-	while true:
-		randomize()
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("click"):
+		var global_mouse_pos = get_global_mouse_position()
 		
-		var enemy = choose(enemies).instance()
-		enemy.position = choose(zonas)
-		add_child(enemy)
-		print ("enemigo generado")
-		yield(create_timer(rand_range(5, 10)), "timeout")
-	pass
+		if turno == 1:
+			get_node("Craigh")._pasos = get_node("Craigh")._rango
+			get_node("Craigh")._target_position = global_mouse_pos
+			get_node("Craigh")._change_state(get_node("Craigh").Estado.FOLLOW)
+			get_node("Craigh/Camera2D").current = true
+			turno = 2
+			yield(create_timer(3), "timeout")
+			get_node("Firebot/Camera2D").current = true
+			return
+		
+		if turno == 2:
+			get_node("Firebot")._pasos = get_node("Firebot")._rango
+			get_node("Firebot")._target_position = global_mouse_pos
+			get_node("Firebot")._change_state(get_node("Firebot").Estado.FOLLOW)
+			get_node("Firebot/Camera2D").current = true
+			
+			yield(create_timer(3), "timeout")
+			get_node("Craigh/Camera2D").current = true
+			
+			spawn()
+			turno = 1
+			return
+			
+
+
+		
+		
+		

@@ -45,15 +45,24 @@ func _process(_delta):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and get_parent().turno == 2:
 		if  overlaps_area(get_parent().get_node("Craigh")):
-			print("detectado")
-			_pasos = _rango #reiniciamos la cantidad de pasos
-			
-		
+			print("detectado Craigh")
 			_target_position = get_parent().get_node("Craigh").global_position
 			
 			_change_state(Estado.FOLLOW)
+			return
+		
+		if  overlaps_area(get_parent().get_node("Firebot")):
+			print("detectado Firebot")
+			_target_position = get_parent().get_node("Firebot").global_position
+			
+			_change_state(Estado.FOLLOW)
+			return
+			
+		_target_position = Vector2(104,728)
+		_change_state(Estado.FOLLOW)
+		return
 
 
 

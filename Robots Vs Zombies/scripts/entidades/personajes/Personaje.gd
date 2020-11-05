@@ -19,7 +19,7 @@ var _path = []
 var _target_point_world = Vector2()
 var _target_position = Vector2()
 
-
+var siguiendo = false
 
 func _ready():
 	_change_state(Estado.IDLE)
@@ -43,21 +43,13 @@ func _process(_delta):
 		_target_point_world = _path[0]
 
 
-func _unhandled_input(event):
-	if event.is_action_pressed("click"):
-		_pasos = _rango #reiniciamos la cantidad de pasos
-		var global_mouse_pos = get_global_mouse_position()
-	
-		_target_position = global_mouse_pos
-		
-		_change_state(Estado.FOLLOW)
-
 
 
 
 func _change_state(new_state):
 	if new_state == Estado.FOLLOW:
 		
+		siguiendo = true
 		#llamamos el algoritmo para obtener la ruta, pasamos pocision actual, y posicion deseada
 		_path = get_parent().get_node("TileMap").get_astar_path(position, _target_position)
 		
@@ -74,6 +66,7 @@ func _change_state(new_state):
 	_state = new_state
 	if new_state == Estado.IDLE:
 		casilla_act = position
+		siguiendo = false
 		print(casilla_act)
 
 
