@@ -55,13 +55,14 @@ shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
 
 [node name="EnemigoA" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1104, 616 )
+position = Vector2( 1104, 624 )
 MASA = 5
 _rango = 1
+speed = 50
 
 [node name="Craigh" parent="." instance=ExtResource( 3 )]
 light_mask = 1
-position = Vector2( 1041.46, 622.413 )
+position = Vector2( 1040, 624 )
 _rango = 5
 speed = 100
 

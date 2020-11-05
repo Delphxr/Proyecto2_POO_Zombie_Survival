@@ -13,9 +13,6 @@ script = ExtResource( 1 )
 scale = Vector2( 2, 2 )
 shadow_enabled = true
 
-[node name="sombra" type="Sprite" parent="." index="1"]
-scale = Vector2( 2, 2 )
-
-[node name="AnimatedSprite" parent="." index="2"]
+[node name="AnimatedSprite" parent="." index="1"]
 light_mask = 3
 material = SubResource( 1 )
