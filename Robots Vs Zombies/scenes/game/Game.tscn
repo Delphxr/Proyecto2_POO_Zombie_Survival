@@ -11,7 +11,7 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="YSort"]
 script = ExtResource( 4 )
 
 [node name="space" type="Sprite" parent="."]
@@ -34,7 +34,6 @@ mode = 2
 shadow_item_cull_mask = 0
 
 [node name="filtro oscuridad" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -56,11 +55,9 @@ shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
 
 [node name="EnemigoA" parent="." instance=ExtResource( 7 )]
-visible = false
-position = Vector2( 1105.94, 484.121 )
+position = Vector2( 1104, 616 )
 MASA = 5
 _rango = 1
-speed = 100
 
 [node name="Craigh" parent="." instance=ExtResource( 3 )]
 light_mask = 1
