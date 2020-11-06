@@ -46,6 +46,7 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("click") and get_parent().turno == 2:
+		_pasos = _rango
 		if  overlaps_area(get_parent().get_node("Craigh")):
 			print("detectado Craigh")
 			_target_position = get_parent().get_node("Craigh").global_position
@@ -60,9 +61,9 @@ func _unhandled_input(event):
 			_change_state(Estado.FOLLOW)
 			return
 			
-		_target_position = Vector2(104,728)
+		_target_position = Vector2(1104,728)
 		_change_state(Estado.FOLLOW)
-		return
+	return
 
 
 
@@ -86,6 +87,5 @@ func _change_state(new_state):
 	_state = new_state
 	if new_state == Estado.IDLE:
 		casilla_act = position
-		print(casilla_act)
 
 

@@ -35,6 +35,7 @@ mode = 2
 shadow_item_cull_mask = 0
 
 [node name="filtro oscuridad" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]

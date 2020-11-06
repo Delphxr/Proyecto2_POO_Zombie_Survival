@@ -58,6 +58,7 @@ func create_timer(wait_time):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("click"):
+		
 		var global_mouse_pos = get_global_mouse_position()
 		
 		if turno == 1:

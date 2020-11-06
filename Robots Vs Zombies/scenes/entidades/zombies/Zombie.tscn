@@ -5,4 +5,3 @@
 
 [node name="Zombie" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-_rango = 2
