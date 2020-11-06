@@ -35,8 +35,7 @@ mode = 2
 shadow_item_cull_mask = 0
 
 [node name="filtro oscuridad" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.603922, 0.603922, 0.603922, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -76,3 +75,8 @@ smoothing_enabled = true
 [node name="Base" type="Sprite" parent="."]
 position = Vector2( 1104, 728 )
 texture = ExtResource( 8 )
+
+[node name="generalcam" type="Camera2D" parent="."]
+position = Vector2( 992, 504 )
+scale = Vector2( 9.93335, 2.46726 )
+zoom = Vector2( 3.5, 3.5 )

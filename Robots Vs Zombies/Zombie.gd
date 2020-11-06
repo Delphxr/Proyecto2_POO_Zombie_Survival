@@ -43,10 +43,20 @@ func _process(_delta):
 		_pasos = _pasos -1
 		_target_point_world = _path[0]
 
+func create_timer(wait_time):
+	var timer = Timer.new()
+	timer.set_wait_time(wait_time)
+	timer.set_one_shot(true)
+	timer.connect("timeout", timer, "queue_free")
+	add_child(timer)
+	timer.start()
+	return timer
+	pass
 
 func _unhandled_input(event):
 	if event.is_action_pressed("click") and get_parent().turno == 2:
 		_pasos = _rango
+		yield(create_timer(4), "timeout")
 		if  overlaps_area(get_parent().get_node("Craigh")):
 			print("detectado Craigh")
 			_target_position = get_parent().get_node("Craigh").global_position

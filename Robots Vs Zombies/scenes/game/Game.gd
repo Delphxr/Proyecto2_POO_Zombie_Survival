@@ -78,6 +78,8 @@ func _unhandled_input(event):
 			get_node("Firebot/Camera2D").current = true
 			
 			yield(create_timer(3), "timeout")
+			get_node("generalcam").current = true
+			yield(create_timer(3), "timeout")
 			get_node("Craigh/Camera2D").current = true
 			
 			spawn()

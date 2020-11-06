@@ -41,7 +41,7 @@ speed = 75
 position = Vector2( 0.475662, 0.475655 )
 texture = ExtResource( 2 )
 texture_scale = 0.09
-color = Color( 0.976471, 0.580392, 0.4, 1 )
+color = Color( 1, 0.929412, 0.65098, 1 )
 mode = 2
 shadow_gradient_length = 15.0
 
