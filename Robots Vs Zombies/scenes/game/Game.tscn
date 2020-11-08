@@ -57,7 +57,7 @@ shadow_color = Color( 1, 0, 0, 0 )
 
 [node name="Craigh" parent="." instance=ExtResource( 3 )]
 light_mask = 1
-position = Vector2( 424, 472 )
+position = Vector2( 979.314, 436.059 )
 _rango = 5
 
 [node name="Camera2D" type="Camera2D" parent="Craigh"]
