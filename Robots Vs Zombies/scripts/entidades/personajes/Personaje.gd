@@ -3,9 +3,10 @@ extends "res://scripts/entidades/entidad.gd"
 
 # Variables modificables
 export var _ataque = 0
-export var _vida = 0
+export var _vidaMaxima = 0
+var vidaActual = 0
 export var _rango = 0
-export var speed = 200
+export var speed = 0
 
 enum Estado { IDLE, FOLLOW }
 
@@ -22,6 +23,7 @@ var _target_position = Vector2()
 var siguiendo = false
 
 func _ready():
+	vidaActual = _vidaMaxima
 	_change_state(Estado.IDLE)
 
 
@@ -69,4 +71,13 @@ func _change_state(new_state):
 		siguiendo = false
 		print(casilla_act)
 
-
+func _on_HitBox_area_entered(area):
+	print("Un zombie ha alcanzado a " , self.name)
+	
+	vidaActual -= 1
+	print("Vida restante: ", vidaActual)
+	
+	if vidaActual==0:
+		#self.queue_free()
+		#Hay que arreglar un error que se genera al morir, está en el mapa
+		print(self.name , " muere")

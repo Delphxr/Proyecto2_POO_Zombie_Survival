@@ -13,6 +13,12 @@ script = ExtResource( 1 )
 scale = Vector2( 2, 2 )
 shadow_enabled = true
 
-[node name="AnimatedSprite" parent="." index="1"]
+[node name="AnimatedSprite" parent="." index="2"]
 light_mask = 3
 material = SubResource( 1 )
+
+[node name="HitBox" type="Area2D" parent="." index="4"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]

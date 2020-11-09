@@ -14,7 +14,7 @@ export var max_turnos = 2
 
 
 const enemies = [
-	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn")
+	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn"),
 ]
 
 #coordenadas de los puntos de generacion
@@ -40,7 +40,7 @@ func spawn():
 	var enemy = choose(enemies).instance()
 	enemy.position = choose(zonas)
 	add_child(enemy)
-	print ("enemigo generado")
+	print ("enemigo generado: " , enemy.name)
 	pass
 
 
@@ -60,7 +60,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("click"):
 		
 		var global_mouse_pos = get_global_mouse_position()
-		
 		if turno == 1:
 			get_node("Craigh")._pasos = get_node("Craigh")._rango
 			get_node("Craigh")._target_position = global_mouse_pos

@@ -5,8 +5,8 @@ extends "res://scripts/entidades/entidad.gd"
 # Variables modificables
 export var _ataque = 0
 export var _vida = 0
-export var _rango = 0
-export var speed = 200
+export var _rango = 1
+export var speed = 50
 
 enum Estado { IDLE, FOLLOW }
 

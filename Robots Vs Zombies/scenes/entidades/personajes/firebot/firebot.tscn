@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=2]
 [ext_resource path="res://scenes/entidades/personajes/Personaje.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/entidades/personajes/firebot/firebot.png" type="Texture" id=4]
+[ext_resource path="res://scenes/entidades/personajes/firebot/firebot.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )
@@ -32,8 +33,12 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 6.82204, 6.46255 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16.3749, 13.5681 )
+
 [node name="Personaje" instance=ExtResource( 3 )]
-MASA = 1
+script = ExtResource( 5 )
+_vidaMaxima = 5
 _rango = 3
 speed = 75
 
@@ -53,9 +58,16 @@ texture = ExtResource( 1 )
 position = Vector2( 0, -13.103 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
-frame = 3
 playing = true
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0.257019, 0.899582 )
 shape = SubResource( 6 )
+
+[node name="HitBox" parent="." index="4"]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2( -0.56123, 1.96034 )
+shape = SubResource( 7 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
