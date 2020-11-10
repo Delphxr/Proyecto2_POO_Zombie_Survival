@@ -81,3 +81,7 @@ func _on_HitBox_area_entered(area):
 		#self.queue_free()
 		#Hay que arreglar un error que se genera al morir, está en el mapa
 		print(self.name , " muere")
+
+
+func _on_Personaje_area_entered(area):
+	pass # Replace with function body.

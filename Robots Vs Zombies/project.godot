@@ -42,6 +42,7 @@ click={
 
 2d_physics/layer_2="HitBoxPersonajes"
 2d_physics/layer_3="AtaqueZombies"
+2d_physics/layer_4="AreaHabilidades"
 
 [rendering]
 

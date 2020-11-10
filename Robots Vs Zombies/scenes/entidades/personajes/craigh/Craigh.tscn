@@ -45,10 +45,10 @@ extents = Vector2( 14.5, 13 )
 
 [node name="Craigh" instance=ExtResource( 1 )]
 light_mask = 3
-position = Vector2( 0, 32 )
+position = Vector2( -1, 32 )
 script = ExtResource( 5 )
 _vidaMaxima = 3
-_rango = 7
+_rango = 4
 speed = 75
 
 [node name="Light2D" parent="." index="0"]
@@ -73,7 +73,7 @@ position = Vector2( 0, -20 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 7 )
 animation = "IDLE"
-frame = 3
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -86,5 +86,6 @@ collision_layer = 0
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( 0.303554, -0.612255 )
 shape = SubResource( 9 )
+[connection signal="area_entered" from="." to="." method="_on_Craigh_area_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/images/efectos/ECbeOgkXYAAgJ-F.png" type="Texture" id=6]
 [ext_resource path="res://scenes/entidades/personajes/firebot/firebot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/images/entidades/personajes/character.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -67,6 +69,7 @@ smoothing_enabled = true
 
 [node name="Firebot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1104, 616 )
+collision_mask = 1
 
 [node name="Camera2D" type="Camera2D" parent="Firebot"]
 position = Vector2( -67.5443, -18.6749 )
@@ -80,3 +83,11 @@ texture = ExtResource( 8 )
 position = Vector2( 992, 504 )
 scale = Vector2( 9.93335, 2.46726 )
 zoom = Vector2( 3.5, 3.5 )
+
+[node name="DobleRango" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1104.5, 431.129 )
+scale = Vector2( 0.65, 0.65 )
+
+[node name="DobleVida" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1104.26, 559.465 )
+scale = Vector2( 0.65, 0.65 )
