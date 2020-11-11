@@ -90,3 +90,4 @@ visible = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 autoplay = "light"
 anims/light = SubResource( 4 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
