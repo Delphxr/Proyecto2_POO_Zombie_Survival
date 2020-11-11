@@ -15,9 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Robots vs Zombies"
+config/name="Starbust"
 config/description="Proyecto 2 de POO"
-run/main_scene="res://scenes/game/Game.tscn"
+run/main_scene="res://scenes/menu/Menu.tscn"
 config/icon="res://assets/images/icon/icon.png"
 
 [display]
