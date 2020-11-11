@@ -34,7 +34,7 @@ extents = Vector2( 48, 48 )
 [sub_resource type="RectangleShape2D" id=7]
 
 [node name="enemigoB" instance=ExtResource( 2 )]
-_rango = 5
+_rango = 2
 
 [node name="sombra" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.164706 )
