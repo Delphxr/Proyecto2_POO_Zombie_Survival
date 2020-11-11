@@ -1,25 +1,25 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/entidades/personajes/firebot/firebot.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=2]
-[ext_resource path="res://scenes/entidades/personajes/Personaje.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/images/entidades/personajes/firebot/firebot.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=3]
+[ext_resource path="res://scenes/entidades/personajes/Personaje.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/entidades/personajes/firebot/firebot.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 1 )
 region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=5]
@@ -34,9 +34,9 @@ animations = [ {
 extents = Vector2( 6.82204, 6.46255 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 16.3749, 13.5681 )
+extents = Vector2( 10.4008, 10.9817 )
 
-[node name="Personaje" instance=ExtResource( 3 )]
+[node name="Firebot" instance=ExtResource( 4 )]
 script = ExtResource( 5 )
 _vidaMaxima = 5
 _rango = 3
@@ -46,16 +46,18 @@ speed = 75
 position = Vector2( 0.475662, 0.475655 )
 texture = ExtResource( 2 )
 texture_scale = 0.09
-color = Color( 1, 0.929412, 0.65098, 1 )
+color = Color( 1, 0.639216, 0.639216, 1 )
 mode = 2
 shadow_gradient_length = 15.0
 
 [node name="sombra" parent="." index="1"]
-modulate = Color( 1, 1, 1, 0.298039 )
-texture = ExtResource( 1 )
+modulate = Color( 1, 1, 1, 0.113725 )
+position = Vector2( -0.28479, -9.42395 )
+scale = Vector2( 1, 1.1513 )
+texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="2"]
-position = Vector2( 0, -13.103 )
+position = Vector2( 0.142395, -20.8414 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
 playing = true
@@ -68,6 +70,7 @@ shape = SubResource( 6 )
 collision_layer = 0
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2( -0.56123, 1.96034 )
+position = Vector2( 0.0325066, 0.179136 )
 shape = SubResource( 7 )
+[connection signal="area_entered" from="." to="." method="_on_Firebot_area_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

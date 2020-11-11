@@ -41,7 +41,7 @@ animations = [ {
 extents = Vector2( 8, 8 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 14.5, 13 )
+extents = Vector2( 12.6964, 11.3877 )
 
 [node name="Craigh" instance=ExtResource( 1 )]
 light_mask = 3
@@ -84,8 +84,12 @@ shape = SubResource( 8 )
 collision_layer = 0
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
+visible = false
 position = Vector2( 0.303554, -0.612255 )
 shape = SubResource( 9 )
+
+[node name="Camera2D" parent="." index="5"]
+current = true
 [connection signal="area_entered" from="." to="." method="_on_Craigh_area_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

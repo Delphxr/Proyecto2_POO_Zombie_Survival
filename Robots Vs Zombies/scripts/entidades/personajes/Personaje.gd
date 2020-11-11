@@ -71,7 +71,8 @@ func _change_state(new_state):
 		siguiendo = false
 		print(casilla_act)
 
-func _on_HitBox_area_entered(area):
+
+func _on_HitBox_area_entered(_area):
 	print("Un zombie ha alcanzado a " , self.name)
 	
 	vidaActual -= 1
@@ -83,5 +84,5 @@ func _on_HitBox_area_entered(area):
 		print(self.name , " muere")
 
 
-func _on_Personaje_area_entered(area):
+func _on_Personaje_area_entered(_area):
 	pass # Replace with function body.

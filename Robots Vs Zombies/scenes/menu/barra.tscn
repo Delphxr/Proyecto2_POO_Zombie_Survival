@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/otro/barra.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/gui/juego/caras.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.694118, 0.254902, 0.337255, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.341176, 0.160784, 0.337255, 1 )
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.101961, 0.109804, 0.172549, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+shadow_color = Color( 0, 0, 0, 0.133333 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="DynamicFont" id=3]
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="barra" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 5.19463, -0.218689 )
+scale = Vector2( 0.70717, 0.70717 )
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 16.0
+margin_top = -8.0
+margin_right = 106.0
+margin_bottom = 8.0
+mouse_filter = 2
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 19.4184
+margin_top = -6.29079
+margin_right = 59.4184
+margin_bottom = 7.70921
+rect_scale = Vector2( 0.889225, 0.889225 )
+custom_fonts/font = SubResource( 3 )
+text = "10/10"
+__meta__ = {
+"_edit_use_anchors_": false
+}

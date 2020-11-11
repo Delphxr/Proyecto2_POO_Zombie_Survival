@@ -16,7 +16,6 @@ var _point_path = []
 onready var astar_node = AStar.new()
 
 # get_used_cells_by_id es un metodo de los tilemap
-# aqui el 0 corresponde a los tiles de obstaculos
 onready var obstacles = get_used_cells_by_id(6) + get_used_cells_by_id(7)
 onready var _half_cell_size = cell_size / 2 #con esto hacemos que se mueva en el medio de los tiles, y no en los bordes
 

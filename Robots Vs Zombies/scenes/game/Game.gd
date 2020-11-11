@@ -15,15 +15,19 @@ export var max_turnos = 2
 
 const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn"),
+	preload("res://scenes/entidades/zombies/EnemyB/enemigoB.tscn"),
+	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn")
 ]
 
 #coordenadas de los puntos de generacion
-var zonas = [
-	Vector2(848,400),
-	Vector2(752,912)
-]
+
+
+
+
 
 func _ready():
+	get_spawn(spawn_points)
+	print(zonas)
 	spawn()
 	pass
 
@@ -81,6 +85,7 @@ func _unhandled_input(event):
 			get_node("Craigh/Camera2D").current = true
 			
 			spawn()
+			#spawn()
 			turno = 1
 			return
 			
