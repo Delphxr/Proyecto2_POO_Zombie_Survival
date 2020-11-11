@@ -15,7 +15,6 @@
 
 [node name="Game" type="YSort"]
 script = ExtResource( 4 )
-max_turnos = null
 
 [node name="Musica" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

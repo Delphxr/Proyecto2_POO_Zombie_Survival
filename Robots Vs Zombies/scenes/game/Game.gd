@@ -20,7 +20,16 @@ const enemies = [
 ]
 
 #coordenadas de los puntos de generacion
+onready var spawn_points = get_node("TileMap").get_used_cells_by_id(8)
+var zonas = []
 
+func get_spawn(tiles):
+	for point in tiles:
+		var point_temp = Vector2()
+		point_temp.x = get_node("TileMap").map_to_world(point).x +16
+		point_temp.y = get_node("TileMap").map_to_world(point).y +16
+		
+		zonas.append(point_temp)
 
 
 
