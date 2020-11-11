@@ -6,3 +6,10 @@
 [node name="Zombie" instance=ExtResource( 1 )]
 collision_layer = 0
 script = ExtResource( 2 )
+_vida = 1
+
+[node name="AreaAtaque" type="Area2D" parent="." index="3"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAtaque" index="0"]

@@ -60,29 +60,41 @@ func _unhandled_input(event):
 		
 		var global_mouse_pos = get_global_mouse_position()
 		if turno == 1:
-			get_node("Craigh")._pasos = get_node("Craigh")._rango
-			get_node("Craigh")._target_position = global_mouse_pos
-			get_node("Craigh")._change_state(get_node("Craigh").Estado.FOLLOW)
-			get_node("Craigh/Camera2D").current = true
+			if get_node_or_null("Craigh") != null:
+				get_node("Craigh")._pasos = get_node("Craigh")._rango
+				get_node("Craigh")._target_position = global_mouse_pos
+				get_node("Craigh")._change_state(get_node("Craigh").Estado.FOLLOW)
+				get_node("Craigh/Camera2D").current = true
+				yield(create_timer(3), "timeout")
+			
 			turno = 2
-			yield(create_timer(3), "timeout")
-			get_node("Firebot/Camera2D").current = true
+			
+			if get_node_or_null("Firebot") != null:
+				get_node("Firebot/Camera2D").current = true
 			return
 		
 		if turno == 2:
-			get_node("Firebot")._pasos = get_node("Firebot")._rango
-			get_node("Firebot")._target_position = global_mouse_pos
-			get_node("Firebot")._change_state(get_node("Firebot").Estado.FOLLOW)
-			get_node("Firebot/Camera2D").current = true
+			if get_node_or_null("Firebot") != null:
+				get_node("Firebot")._pasos = get_node("Firebot")._rango
+				get_node("Firebot")._target_position = global_mouse_pos
+				get_node("Firebot")._change_state(get_node("Firebot").Estado.FOLLOW)
+				get_node("Firebot/Camera2D").current = true
+				yield(create_timer(3), "timeout")
 			
-			yield(create_timer(3), "timeout")
 			get_node("generalcam").current = true
 			yield(create_timer(3), "timeout")
-			get_node("Craigh/Camera2D").current = true
+			if get_node_or_null("Craigh") != null:
+				get_node("Craigh/Camera2D").current = true
+				turno = 1
+			elif get_node_or_null("Firebot") != null:
+				get_node("Firebot/Camera2D").current = true
+				turno = 2
 			
 			spawn()
-			turno = 1
+			
 			return
+		
+		return
 			
 
 
