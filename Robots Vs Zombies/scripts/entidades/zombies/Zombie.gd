@@ -99,3 +99,13 @@ func _change_state(new_state):
 		casilla_act = position
 
 
+func _on_AreaAtaque_area_entered(area):
+	if(area.get_parent().name == "Firebot"):
+		quitarVida()
+		
+
+func quitarVida():
+	_vida -=1
+	
+	if _vida == 0:
+		self.queue_free()

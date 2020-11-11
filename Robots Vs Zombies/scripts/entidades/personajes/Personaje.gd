@@ -79,9 +79,8 @@ func _on_HitBox_area_entered(_area):
 	print("Vida restante: ", vidaActual)
 	
 	if vidaActual==0:
-		#self.queue_free()
-		#Hay que arreglar un error que se genera al morir, está en el mapa
-		print(self.name , " muere")
+		self.queue_free()
+		print(self.name , " murió")
 
 
 func _on_Personaje_area_entered(_area):
