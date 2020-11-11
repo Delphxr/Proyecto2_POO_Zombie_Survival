@@ -156,3 +156,4 @@ angle = 1.7
 angle_random = 0.14
 scale_amount = 1.75
 scale_amount_random = 0.46
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]
