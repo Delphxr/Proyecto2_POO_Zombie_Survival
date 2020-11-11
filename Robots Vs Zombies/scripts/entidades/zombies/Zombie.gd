@@ -54,24 +54,33 @@ func create_timer(wait_time):
 	pass
 
 func _unhandled_input(event):
-	if event.is_action_pressed("click") and get_parent().turno == 2:
+	if event.is_action_pressed("click") and get_parent().turno == 3:
 		_pasos = _rango
 		yield(create_timer(4), "timeout")
-		if  overlaps_area(get_parent().get_node("Craigh")):
-			print("detectado Craigh")
-			_target_position = get_parent().get_node("Craigh").global_position
-			
-			_change_state(Estado.FOLLOW)
-			return
 		
-		if  overlaps_area(get_parent().get_node("Firebot")):
-			print("detectado Firebot")
-			_target_position = get_parent().get_node("Firebot").global_position
+		if get_parent().get_node_or_null("Craigh") != null:
+			if  overlaps_area(get_parent().get_node("Craigh")):
+				print("detectado Craigh")
+				_target_position = get_parent().get_node("Craigh").global_position
+				
+				_change_state(Estado.FOLLOW)
+				return
+		if get_parent().get_node_or_null("Firebot") != null:
+			if  overlaps_area(get_parent().get_node("Firebot")):
+				print("detectado Firebot")
+				_target_position = get_parent().get_node("Firebot").global_position
+				
+				_change_state(Estado.FOLLOW)
+				return
+		if get_parent().get_node_or_null("hapbot") != null:	
+			if  overlaps_area(get_parent().get_node("hapbot")):
+				print("detectado Hapbot")
+				_target_position = get_parent().get_node("hapbot").global_position
+				
+				_change_state(Estado.FOLLOW)
+				return
 			
-			_change_state(Estado.FOLLOW)
-			return
-			
-		_target_position = Vector2(1104,728)
+		_target_position = Vector2(1104,752)
 		_change_state(Estado.FOLLOW)
 	return
 

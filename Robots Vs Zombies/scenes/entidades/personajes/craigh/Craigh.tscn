@@ -73,7 +73,7 @@ position = Vector2( 0, -20 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 7 )
 animation = "IDLE"
-frame = 4
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -84,7 +84,6 @@ shape = SubResource( 8 )
 collision_layer = 0
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-visible = false
 position = Vector2( 0.303554, -0.612255 )
 shape = SubResource( 9 )
 

@@ -80,12 +80,16 @@ func _unhandled_input(event):
 				get_node("Craigh/Camera2D").current = true
 				yield(create_timer(3), "timeout")
 			
-			turno = 2
+			
 			
 			if get_node_or_null("Firebot") != null:
 				get_node("Firebot/Camera2D").current = true
+				turno = 2
+				
+			elif get_node_or_null("hapbot") != null:
+				get_node("hapbot/Camera2D").current = true
+				turno = 3
 			return
-		
 		if turno == 2:
 			if get_node_or_null("Firebot") != null:
 				get_node("Firebot")._pasos = get_node("Firebot")._rango
@@ -94,8 +98,27 @@ func _unhandled_input(event):
 				get_node("Firebot/Camera2D").current = true
 				yield(create_timer(3), "timeout")
 			
+			
+			
+			if get_node_or_null("hapbot") != null:
+				get_node("hapbot/Camera2D").current = true
+				turno = 3
+			elif get_node_or_null("Craigh") != null:
+				get_node("Craigh/Camera2D").current = true
+				turno = 1
+			return
+			
+		if turno == 3:
+			if get_node_or_null("hapbot") != null:
+				get_node("hapbot")._pasos = get_node("hapbot")._rango
+				get_node("hapbot")._target_position = global_mouse_pos
+				get_node("hapbot")._change_state(get_node("hapbot").Estado.FOLLOW)
+				get_node("hapbot/Camera2D").current = true
+				yield(create_timer(3), "timeout")
+			
 			get_node("generalcam").current = true
-			yield(create_timer(3), "timeout")
+			yield(create_timer(5), "timeout")
+			
 			if get_node_or_null("Craigh") != null:
 				get_node("Craigh/Camera2D").current = true
 				turno = 1
@@ -108,9 +131,8 @@ func _unhandled_input(event):
 			return
 		
 		return
-			
 
 
-		
-		
-		
+
+
+

@@ -85,3 +85,6 @@ func _on_HitBox_area_entered(_area):
 
 func _on_Personaje_area_entered(_area):
 	pass # Replace with function body.
+
+
+
