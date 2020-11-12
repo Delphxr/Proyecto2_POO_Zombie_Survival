@@ -98,7 +98,7 @@ range_item_cull_mask = 32
 [node name="logo" type="Sprite" parent="."]
 light_mask = 32
 position = Vector2( 250.448, 146.644 )
-rotation = 0.00125825
+rotation = 1.2258e-05
 scale = Vector2( 0.424182, 0.424182 )
 texture = ExtResource( 2 )
 
