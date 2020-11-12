@@ -19,11 +19,16 @@ const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn")
 ]
 
+#coordenadas de las tiles caminables
+onready var caminos = get_node("TileMap").get_used_cells_by_id(5)
+
+
 #coordenadas de los puntos de generacion
 onready var spawn_points = get_node("TileMap").get_used_cells_by_id(8)
 var zonas = []
 
 func get_spawn(tiles):
+	zonas = []
 	for point in tiles:
 		var point_temp = Vector2()
 		point_temp.x = get_node("TileMap").map_to_world(point).x +16
@@ -31,12 +36,7 @@ func get_spawn(tiles):
 		
 		zonas.append(point_temp)
 
-
-
-
 func _ready():
-	get_spawn(spawn_points)
-	print(zonas)
 	spawn()
 	pass
 
@@ -48,13 +48,25 @@ func choose(choises):
 	
 	
 func spawn():
+	get_spawn(spawn_points)
 	randomize()
 	
-	var enemy = choose(enemies).instance()
-	enemy.position = choose(zonas)
-	add_child(enemy)
-	print ("enemigo generado: " , enemy.name)
+	for espacio in zonas:
+		var enemy = choose(enemies).instance()
+		enemy.position = espacio
+		add_child(enemy)
+		enemy.add_to_group("zombies")
+		print ("enemigo generado: " , enemy.name)
+		
 	pass
+
+
+func nuevo_spawn(tiles):
+	randomize()
+	var nueva = choose(tiles)
+	get_node("TileMap").set_cell(nueva.x,nueva.y,8)
+	spawn_points = get_node("TileMap").get_used_cells_by_id(8)
+	print ("Creado nuevo punto de generacion")
 
 
 func create_timer(wait_time):
@@ -68,16 +80,15 @@ func create_timer(wait_time):
 	pass
 
 
+
 func _unhandled_input(event):
 	if event.is_action_pressed("click"):
 		
 		var global_mouse_pos = get_global_mouse_position()
 		
-		#Si la base desaparece, se pierde el juego
-		if get_node_or_null("base") == null:
-			print("GameOver")
+		
 			
-		elif turno == 1:
+		if turno == 1:
 			if get_node_or_null("Craigh") != null:
 				get_node("Craigh")._pasos = get_node("Craigh")._rango
 				get_node("Craigh")._target_position = global_mouse_pos
@@ -96,6 +107,9 @@ func _unhandled_input(event):
 			else:
 				get_node("generalcam").current = true
 				turno = 4
+				get_node("CanvasLayer/mensaje").show()
+				mover_zombies()
+				
 			return
 		elif turno == 2:
 			if get_node_or_null("Firebot") != null:
@@ -115,6 +129,8 @@ func _unhandled_input(event):
 			else:
 				get_node("generalcam").current = true
 				turno = 4
+				get_node("CanvasLayer/mensaje").show()
+				mover_zombies()
 			return
 			
 		elif turno == 3:
@@ -126,12 +142,17 @@ func _unhandled_input(event):
 				yield(create_timer(3), "timeout")
 				get_node("generalcam").current = true
 				turno = 4
+				mover_zombies()
+				get_node("CanvasLayer/mensaje").show()
 			return
 		
 		#Prueba:
 		elif turno == 4:
 			get_node("generalcam").current = true
+			
+			nuevo_spawn(caminos)
 			spawn()
+			
 			#yield(create_timer(5), "timeout")
 			
 			if get_node_or_null("Craigh") != null:
@@ -143,12 +164,29 @@ func _unhandled_input(event):
 			elif get_node_or_null("hapbot") != null:
 				get_node("hapbot/Camera2D").current = true
 				turno = 3
-			else:
-				print("GameOver")
-				
+		
+		get_node("CanvasLayer/mensaje").hide()
 		return
 
 
+func _process(_delta):
+	#Si la base desaparece, se pierde el juego
+	
+	if get_node_or_null("base") == null:
+		print("GameOver")
+		get_node("CanvasLayer/gameover").show()
+		get_node("EfectoGameOver").show()
+		get_node("Musica").stop()
+	if get_node_or_null("Craigh") == null and get_node_or_null("Firebot") == null and get_node_or_null("hapbot") == null:
+		print("GameOver")
+		get_node("CanvasLayer/gameover").show()
+		get_node("EfectoGameOver").show()
+		get_node("Musica").stop()
 
 
+func mover_zombies():
+	yield(create_timer(1), "timeout")
+	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
+	for vivo in zombies_vivos:
+		vivo.moverse()
 

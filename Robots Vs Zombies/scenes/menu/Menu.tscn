@@ -48,10 +48,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1, 2.3 ),
-"transitions": PoolRealArray( 0.435275, 0.366021 ),
+"times": PoolRealArray( 0.47, 1, 2.31 ),
+"transitions": PoolRealArray( 0.31864, 0.31864, 0.366021 ),
 "update": 0,
-"values": [ Color( 0.027451, 0.192157, 0.501961, 1 ), Color( 0.635294, 0.0627451, 0.156863, 1 ) ]
+"values": [ Color( 0, 0.203922, 1, 1 ), Color( 0, 0.203922, 1, 1 ), Color( 0.635294, 0.0627451, 0.156863, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Light2D:position")
@@ -108,7 +108,7 @@ anims/glow = SubResource( 1 )
 anims/inicial = SubResource( 2 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.170073, 0.161792, 0.420988, 1 )
+color = Color( 0.0538287, 0.19196, 0.928561, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -154,3 +154,4 @@ angle = 1.7
 angle_random = 0.14
 scale_amount = 1.75
 scale_amount_random = 0.46
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]

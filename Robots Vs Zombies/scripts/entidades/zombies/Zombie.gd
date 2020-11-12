@@ -53,10 +53,14 @@ func create_timer(wait_time):
 	return timer
 	pass
 
-func _unhandled_input(event):
-	if event.is_action_pressed("click") and get_parent().turno == 3:
+
+#de aqui manejamos movimiento de los zombies
+
+
+func moverse():
+	if get_parent().turno == 4:
 		_pasos = _rango
-		yield(create_timer(4), "timeout")
+		#yield(create_timer(4), "timeout")
 		
 		if get_parent().get_node_or_null("Craigh") != null:
 			if  overlaps_area(get_parent().get_node("Craigh")):
@@ -83,8 +87,6 @@ func _unhandled_input(event):
 		_target_position = Vector2(1104,752)
 		_change_state(Estado.FOLLOW)
 	return
-
-
 
 
 func _change_state(new_state):

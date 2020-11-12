@@ -37,7 +37,6 @@ extents = Vector2( 80, 80 )
 [node name="EnemigoA" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 _vida = 1
-_rango = 2
 
 [node name="sombra" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.164706 )
@@ -49,7 +48,6 @@ texture = ExtResource( 3 )
 position = Vector2( 0, -24 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
-frame = 2
 playing = true
 flip_h = true
 
