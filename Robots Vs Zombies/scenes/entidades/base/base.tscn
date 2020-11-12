@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/entidades/personajes/Personaje.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/entidades/base/base.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/efectos/daño base.wav" type="AudioStream" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -90,4 +91,7 @@ visible = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 autoplay = "light"
 anims/light = SubResource( 4 )
+
+[node name="sonido" parent="." index="7"]
+stream = ExtResource( 4 )
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

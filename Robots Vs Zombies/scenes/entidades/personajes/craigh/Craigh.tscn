@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/entidades/personajes/Personaje.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/entidades/personajes/craigh/Craigh.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=4]
 [ext_resource path="res://scenes/entidades/personajes/craigh/Craigh.gd" type="Script" id=5]
+[ext_resource path="res://assets/sounds/efectos/daño1.wav" type="AudioStream" id=6]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 2
@@ -73,7 +74,6 @@ position = Vector2( 0, -20 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 7 )
 animation = "IDLE"
-frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -90,6 +90,9 @@ shape = SubResource( 9 )
 [node name="Camera2D" parent="." index="5"]
 current = true
 zoom = Vector2( 1.5, 1.5 )
+
+[node name="sonido" parent="." index="6"]
+stream = ExtResource( 6 )
 [connection signal="area_entered" from="." to="." method="_on_Craigh_area_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

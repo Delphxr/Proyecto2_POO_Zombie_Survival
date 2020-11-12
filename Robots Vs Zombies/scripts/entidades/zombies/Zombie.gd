@@ -58,34 +58,33 @@ func create_timer(wait_time):
 
 
 func moverse():
-	if get_parent().turno == 4:
-		_pasos = _rango
-		#yield(create_timer(4), "timeout")
-		
-		if get_parent().get_node_or_null("Craigh") != null:
-			if  overlaps_area(get_parent().get_node("Craigh")):
-				print("detectado Craigh")
-				_target_position = get_parent().get_node("Craigh").global_position
-				
-				_change_state(Estado.FOLLOW)
-				return
-		if get_parent().get_node_or_null("Firebot") != null:
-			if  overlaps_area(get_parent().get_node("Firebot")):
-				print("detectado Firebot")
-				_target_position = get_parent().get_node("Firebot").global_position
-				
-				_change_state(Estado.FOLLOW)
-				return
-		if get_parent().get_node_or_null("hapbot") != null:	
-			if  overlaps_area(get_parent().get_node("hapbot")):
-				print("detectado Hapbot")
-				_target_position = get_parent().get_node("hapbot").global_position
-				
-				_change_state(Estado.FOLLOW)
-				return
+	_pasos = _rango
+	#yield(create_timer(4), "timeout")
+	
+	if get_parent().get_node_or_null("Craigh") != null:
+		if  overlaps_area(get_parent().get_node("Craigh")):
+			print("detectado Craigh")
+			_target_position = get_parent().get_node("Craigh").global_position
 			
-		_target_position = Vector2(1104,752)
-		_change_state(Estado.FOLLOW)
+			_change_state(Estado.FOLLOW)
+			return
+	if get_parent().get_node_or_null("Firebot") != null:
+		if  overlaps_area(get_parent().get_node("Firebot")):
+			print("detectado Firebot")
+			_target_position = get_parent().get_node("Firebot").global_position
+			
+			_change_state(Estado.FOLLOW)
+			return
+	if get_parent().get_node_or_null("hapbot") != null:	
+		if  overlaps_area(get_parent().get_node("hapbot")):
+			print("detectado Hapbot")
+			_target_position = get_parent().get_node("hapbot").global_position
+			
+			_change_state(Estado.FOLLOW)
+			return
+		
+	_target_position = Vector2(1104,752)
+	_change_state(Estado.FOLLOW)
 	return
 
 

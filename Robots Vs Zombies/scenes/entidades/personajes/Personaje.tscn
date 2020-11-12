@@ -22,4 +22,6 @@ collision_mask = 4
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 smoothing_enabled = true
+
+[node name="sonido" type="AudioStreamPlayer" parent="." index="6"]
 [connection signal="area_entered" from="." to="." method="_on_Personaje_area_entered"]

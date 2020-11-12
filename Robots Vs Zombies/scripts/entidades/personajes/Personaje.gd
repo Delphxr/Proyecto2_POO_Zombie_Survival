@@ -22,12 +22,17 @@ var _target_position = Vector2()
 
 var siguiendo = false
 
+var isshake = false
+
+
 func _ready():
 	vidaActual = _vidaMaxima
 	_change_state(Estado.IDLE)
 
 
-func _process(_delta):
+func _process(delta):
+	if isshake == true:
+		shake(delta) 
 	if _state != Estado.FOLLOW:
 		return
 	var _arrived_to_next_point = _move_to(_target_point_world,speed)
@@ -74,6 +79,8 @@ func _change_state(new_state):
 
 func _on_HitBox_area_entered(_area):
 	print("Un zombie ha alcanzado a " , self.name)
+	get_node("sonido").play()
+	
 	
 	vidaActual -= 1
 	print("Vida restante: ", vidaActual)
@@ -87,4 +94,15 @@ func _on_Personaje_area_entered(_area):
 	pass # Replace with function body.
 
 
-
+func shake(delta):
+	var elapsedtime = 0
+	var shake_time = 0.4
+	var shake_power = 5
+	
+	if elapsedtime<shake_time:
+		get_node("Camera2D").offset =  Vector2(randf(), randf()) * shake_power
+		elapsedtime += delta
+	else:
+		isshake = false
+		elapsedtime = 0
+		get_node("Camera2D").offset = Vector2(0,0)        
