@@ -106,7 +106,7 @@ func choose(choises):
 	return choises[rand_index]
 	pass
 
-
+#mandamos señal si recibimos un input
 func _unhandled_input(event):
 	if event.is_action_pressed("click"):
 		emit_signal("nuevo_click")
@@ -125,26 +125,29 @@ func turnos():
 	while true:
 		yield(jugar(turno),"completed")
 		turno = (turno+1)%4
-	
 
-# de aqui se manejan los turnos
+# de aqui se manejan movimiento
 func moverse(turn):
 
 	#mover zombies
 	if turn == 3:
+		get_node("CanvasLayer/Label").text = "Turno Zombies"
 		get_node("generalcam").current = true
 		get_node("CanvasLayer/mensaje").show()
 		mover_zombies()
 		
+		
 		yield(self,"nuevo_click")
-		nuevo_spawn(caminos)
 		spawn()
+		nuevo_spawn(caminos)
+		
 		actual = 0
 	
 		
 	#mover jugadores
 	else:
-		
+		get_node("CanvasLayer/mensaje").hide()
+		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Movimiento"
 		yield(self,"nuevo_click")
 		var global_mouse_pos = get_global_mouse_position()
 		check_jugadores()
@@ -156,56 +159,63 @@ func moverse(turn):
 			jugadores[turn]._target_position = global_mouse_pos
 			jugadores[turn]._change_state(jugadores[turn].Estado.FOLLOW)
 			jugadores[turn].get_node("Camera2D").current = true
-			yield(create_timer(3), "timeout")
+			yield(create_timer(2), "timeout")
 			
 			actual = turn +1 
 	
+	check_jugadores()
+	emit_signal("fin_turno")
+	return false
+
+
+
+# de aqui se manejan los turnos
+func atacar(turn):
+	
+	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
+	for vivo in zombies_vivos:
+		vivo.atacando = true
+	
+	if turn == 3:
+		actual = 0
+	
+	else:
+		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Ataque"
+		yield(self,"nuevo_click")
+
+		actual = turn +1 
+	
+	
+	yield(create_timer(0.01), "timeout")
+	
+	zombies_vivos = get_tree().get_nodes_in_group("zombies")
+	for vivo in zombies_vivos:
+		vivo.atacando = false
+	
+	yield(create_timer(2), "timeout")
+	
+	zombies_vivos = get_tree().get_nodes_in_group("zombies")
+	for vivo in zombies_vivos:
+		vivo.atacando = false
+		
 	check_jugadores()
 	while true:
 		actual = (actual)%3
 		if jugadores[actual] != null:
 			jugadores[actual].get_node("Camera2D").current = true
+			
 			emit_signal("fin_turno")
 			return false
 		actual+=1
 
-# de aqui se manejan los turnos
-func atacar(turn):
-	
-	#saltar zombies
-	if turn == 3:
-		emit_signal("fin_turno")
-		return
-	
-	#ataque de jugadores
-	else:
-		yield(self,"nuevo_click")
-		var global_mouse_pos = get_global_mouse_position()
-		
-		check_jugadores()
-		
-		if jugadores[turn] != null:
-			jugadores[turn]._pasos = get_node("Craigh")._rango
-			jugadores[turn]._target_position = global_mouse_pos
-			jugadores[turn]._change_state(get_node("Craigh").Estado.FOLLOW)
-			jugadores[turn].get_node("Camera2D").current = true
-			yield(create_timer(3), "timeout")
-			
-			var actual = turn
-			while true:
-				actual = (actual+1)%3
-				if jugadores[actual] != null:
-					jugadores[actual].get_node("Camera2D").current = true
-					emit_signal("fin_turno")
-					return
-		
 
 
+#orden de las jugadas
 func jugar(turn):
 	print(turn)
 	moverse(turn)
 	yield(self,"fin_turno")
-	#atacar(turn)
-	#yield(self,"fin_turno")
+	atacar(turn)
+	yield(self,"fin_turno")
 	
 

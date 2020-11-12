@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=1]
 [ext_resource path="res://scenes/entidades/zombies/Zombie.tscn" type="PackedScene" id=2]
@@ -33,6 +33,9 @@ extents = Vector2( 48, 48 )
 
 [sub_resource type="RectangleShape2D" id=7]
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 20.6428, 17.4336 )
+
 [node name="enemigoB" instance=ExtResource( 2 )]
 _vida = 1
 _rango = 4
@@ -46,7 +49,6 @@ texture = ExtResource( 1 )
 position = Vector2( 0, -16 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
-frame = 1
 speed_scale = 1.2
 playing = true
 
@@ -55,3 +57,7 @@ shape = SubResource( 6 )
 
 [node name="daño" parent="Area2D" index="0"]
 shape = SubResource( 7 )
+
+[node name="CollisionShape2D" parent="click_area" index="0"]
+position = Vector2( -0.615471, -15.1259 )
+shape = SubResource( 8 )

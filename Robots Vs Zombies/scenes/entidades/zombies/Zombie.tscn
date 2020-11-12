@@ -1,9 +1,50 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/entidades/entidad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/entidades/zombies/Zombie.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/efectos/daño3.wav" type="AudioStream" id=3]
 
-[node name="EnemigoA" instance=ExtResource( 1 )]
+[sub_resource type="Animation" id=2]
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 0.353553 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dano:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("dano:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="zombie" instance=ExtResource( 1 )]
 collision_layer = 0
 script = ExtResource( 2 )
 
@@ -12,4 +53,19 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="daño" type="CollisionShape2D" parent="Area2D" index="0"]
+
+[node name="click_area" type="Area2D" parent="." index="4"]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_area" index="0"]
+
+[node name="dano" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource( 3 )
+volume_db = 4.727
+
+[node name="animacion" type="AnimationPlayer" parent="." index="6"]
+"anims/daño" = SubResource( 2 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
+[connection signal="animation_finished" from="animacion" to="." method="_on_animacion_animation_finished"]

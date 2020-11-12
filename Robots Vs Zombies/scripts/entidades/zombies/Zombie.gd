@@ -20,9 +20,10 @@ var _path = []
 var _target_point_world = Vector2()
 var _target_position = Vector2()
 
-
+var atacando = false
 
 func _ready():
+	add_user_signal("fin_animacion")
 	_change_state(Estado.IDLE)
 
 
@@ -110,6 +111,8 @@ func _change_state(new_state):
 		
 
 func quitarVida():
+	get_node("animacion").play("daño")
+	yield(self,"fin_animacion")
 	_vida -= 1
 	
 	if _vida <= 0:
@@ -125,3 +128,13 @@ func _on_Area2D_area_entered(area):
 	elif area.get_parent().name == "base":
 		print(self.name , " llegó a la base.")
 		self.queue_free()
+
+
+func _on_click_area_input_event(_viewport, event, _shape_idx):
+	if (event is InputEventMouseButton && event.pressed && atacando == true):
+		quitarVida()
+	
+
+
+func _on_animacion_animation_finished(_anim_name):
+	emit_signal("fin_animacion")

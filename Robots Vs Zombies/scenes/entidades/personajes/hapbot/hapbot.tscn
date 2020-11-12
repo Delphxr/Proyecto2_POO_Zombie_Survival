@@ -56,7 +56,7 @@ texture = ExtResource( 1 )
 position = Vector2( -0.12164, -20.505 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" parent="." index="3"]
@@ -68,6 +68,6 @@ collision_layer = 0
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 7 )
 
-[node name="sonido" parent="." index="6"]
+[node name="sonido" parent="." index="7"]
 stream = ExtResource( 5 )
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

@@ -3,7 +3,6 @@
 [ext_resource path="res://scenes/entidades/zombies/Zombie.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/entidades/zombies/floty.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/efectos/shadow.png" type="Texture" id=3]
-[ext_resource path="res://scenes/entidades/zombies/EnemyA/EnemigoA.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -30,31 +29,34 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 80, 80 )
+extents = Vector2( 56, 54.1731 )
 
 [sub_resource type="RectangleShape2D" id=7]
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 14.9623, 19.5998 )
+
 [node name="EnemigoA" instance=ExtResource( 1 )]
-script = ExtResource( 4 )
-_vida = 1
-_rango = 2
 
 [node name="sombra" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.164706 )
-position = Vector2( 0, -8 )
-scale = Vector2( 0.75, 0.875 )
+position = Vector2( -0.249123, -8.96848 )
+scale = Vector2( 0.735305, 1 )
 texture = ExtResource( 3 )
 
 [node name="AnimatedSprite" parent="." index="1"]
-position = Vector2( 0, -24 )
+position = Vector2( 0.332169, -20.7604 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
-frame = 3
 playing = true
-flip_h = true
 
 [node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( 0, -1.82691 )
 shape = SubResource( 6 )
 
 [node name="daño" parent="Area2D" index="0"]
 shape = SubResource( 7 )
+
+[node name="CollisionShape2D" parent="click_area" index="0"]
+position = Vector2( 2.32518, -18.2691 )
+shape = SubResource( 8 )

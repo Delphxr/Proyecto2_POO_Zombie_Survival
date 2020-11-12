@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/entidades/personajes/Personaje.gd" type="Script" id=1]
 [ext_resource path="res://scenes/entidades/entidad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sounds/efectos/item.wav" type="AudioStream" id=3]
 
 [node name="Personaje" instance=ExtResource( 2 )]
 collision_mask = 9
@@ -23,5 +24,10 @@ collision_mask = 4
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 smoothing_enabled = true
 
-[node name="sonido" type="AudioStreamPlayer" parent="." index="6"]
+[node name="sound_item" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource( 3 )
+volume_db = -5.778
+
+[node name="sonido" type="AudioStreamPlayer" parent="." index="7"]
+volume_db = -4.127
 [connection signal="area_entered" from="." to="." method="_on_Personaje_area_entered"]
