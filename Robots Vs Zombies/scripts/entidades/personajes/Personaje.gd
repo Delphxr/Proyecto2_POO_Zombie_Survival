@@ -78,7 +78,7 @@ func _on_HitBox_area_entered(_area):
 	vidaActual -= 1
 	print("Vida restante: ", vidaActual)
 	
-	if vidaActual==0:
+	if vidaActual <= 0:
 		self.queue_free()
 		print(self.name , " murió")
 
