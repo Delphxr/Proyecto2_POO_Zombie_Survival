@@ -43,10 +43,10 @@ position = Vector2( 1104, 656 )
 
 [node name="Firebot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1136, 656 )
-_rango = 4
 
 [node name="hapbot" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1071.57, 657.281 )
+_rango = 4
 
 [node name="base" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1105.19, 768.531 )

@@ -111,15 +111,18 @@ func _change_state(new_state):
 		
 
 func quitarVida():
-	_vida -=1
+	_vida -= 1
 	
-	if _vida == 0:
+	if _vida <= 0:
+		print(self.name, " murió")
 		self.queue_free()
 
 
 func _on_Area2D_area_entered(area):
 	if(area.get_parent().name == "Firebot"):
+		print("Alcanzado por Firebot")
 		quitarVida()
 	
 	elif area.get_parent().name == "base":
+		print(self.name , " llegó a la base.")
 		self.queue_free()
