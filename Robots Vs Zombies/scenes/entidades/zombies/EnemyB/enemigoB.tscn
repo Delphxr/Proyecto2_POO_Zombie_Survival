@@ -34,7 +34,8 @@ extents = Vector2( 48, 48 )
 [sub_resource type="RectangleShape2D" id=7]
 
 [node name="enemigoB" instance=ExtResource( 2 )]
-_rango = 2
+_vida = 1
+_rango = 4
 
 [node name="sombra" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.164706 )
@@ -45,7 +46,6 @@ texture = ExtResource( 1 )
 position = Vector2( 0, -16 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
-frame = 2
 speed_scale = 1.2
 playing = true
 

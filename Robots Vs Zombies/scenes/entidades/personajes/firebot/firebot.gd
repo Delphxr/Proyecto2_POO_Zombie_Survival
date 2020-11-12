@@ -1,5 +1,11 @@
 extends "res://scripts/entidades/personajes/Personaje.gd"
 
+
+#Firebot: Personaje tanque
+#Habilidades:
+#	Inicial: Retorna daño cuando un zombie le hace daño
+#	Doble de vida
+
 func _ready():
 	pass
 

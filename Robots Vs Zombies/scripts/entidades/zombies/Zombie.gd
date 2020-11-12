@@ -106,15 +106,18 @@ func _change_state(new_state):
 	_state = new_state
 	if new_state == Estado.IDLE:
 		casilla_act = position
-
-
-func _on_AreaAtaque_area_entered(area):
-	if(area.get_parent().name == "Firebot"):
-		quitarVida()
 		
 
 func quitarVida():
 	_vida -=1
 	
 	if _vida == 0:
+		self.queue_free()
+
+
+func _on_Area2D_area_entered(area):
+	if(area.get_parent().name == "Firebot"):
+		quitarVida()
+	
+	elif area.get_parent().name == "base":
 		self.queue_free()

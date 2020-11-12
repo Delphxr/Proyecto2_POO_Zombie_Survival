@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/images/gui/menu_principal/boton1/hover.png" type="Texture" id=6]
 [ext_resource path="res://scripts/otro/boton_inicio.gd" type="Script" id=7]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "glow"
 length = 4.0
 loop = true
@@ -37,8 +37,7 @@ tracks/1/keys = {
 "values": [ 1.0, 1.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "inicial"
+[sub_resource type="Animation" id=2]
 length = 3.0
 loop = true
 step = 0.001
@@ -105,8 +104,8 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "inicial"
-anims/glow = SubResource( 2 )
-anims/inicial = SubResource( 1 )
+anims/glow = SubResource( 1 )
+anims/inicial = SubResource( 2 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.170073, 0.161792, 0.420988, 1 )
@@ -139,7 +138,6 @@ lifetime = 2.0
 emission_shape = 1
 emission_sphere_radius = 47.34
 spread = 90.0
-gravity = Vector2( 0, 98 )
 initial_velocity = 120.0
 angular_velocity = 173.79
 angular_velocity_random = 0.15
@@ -156,4 +154,3 @@ angle = 1.7
 angle_random = 0.14
 scale_amount = 1.75
 scale_amount_random = 0.46
-[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]

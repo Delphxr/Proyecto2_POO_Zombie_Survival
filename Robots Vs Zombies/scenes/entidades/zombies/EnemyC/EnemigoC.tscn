@@ -59,7 +59,8 @@ extents = Vector2( 80, 80 )
 extents = Vector2( 8.13516, 7.676 )
 
 [node name="EnemigoA" instance=ExtResource( 2 )]
-_rango = 3
+_vida = 2
+_rango = 2
 
 [node name="sombra" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.164706 )
@@ -71,7 +72,7 @@ texture = ExtResource( 1 )
 position = Vector2( 0.858551, -19.0633 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 11 )
-frame = 4
+frame = 8
 speed_scale = 1.2
 playing = true
 

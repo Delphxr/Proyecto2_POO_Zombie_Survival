@@ -16,18 +16,14 @@ export var max_turnos = 2
 const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn"),
 	preload("res://scenes/entidades/zombies/EnemyB/enemigoB.tscn"),
-	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn"),
+	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn")
 ]
-
-
-onready var caminos = get_node("TileMap").get_used_cells_by_id(5)
 
 #coordenadas de los puntos de generacion
 onready var spawn_points = get_node("TileMap").get_used_cells_by_id(8)
 var zonas = []
 
 func get_spawn(tiles):
-	zonas = []
 	for point in tiles:
 		var point_temp = Vector2()
 		point_temp.x = get_node("TileMap").map_to_world(point).x +16
@@ -39,7 +35,8 @@ func get_spawn(tiles):
 
 
 func _ready():
-	nuevo_spawn(caminos)
+	get_spawn(spawn_points)
+	print(zonas)
 	spawn()
 	pass
 
@@ -51,23 +48,14 @@ func choose(choises):
 	
 	
 func spawn():
-	get_spawn(spawn_points)
 	randomize()
 	
-	for espacio in zonas:
-		var enemy = choose(enemies).instance()
-		enemy.position = espacio
-		add_child(enemy)
-		print ("enemigo generado: " , enemy.name)
+	var enemy = choose(enemies).instance()
+	enemy.position = choose(zonas)
+	add_child(enemy)
+	print ("enemigo generado: " , enemy.name)
 	pass
 
-
-func nuevo_spawn(tiles):
-	randomize()
-	var nueva = choose(tiles)
-	get_node("TileMap").set_cell(nueva.x,nueva.y,8)
-	spawn_points = get_node("TileMap").get_used_cells_by_id(8)
-	print ("Creado nuevo punto de generacion")
 
 func create_timer(wait_time):
 	var timer = Timer.new()
@@ -80,23 +68,22 @@ func create_timer(wait_time):
 	pass
 
 
-
-
-# ----------------------------------------------------
-#con esto manejamos los turnos
 func _unhandled_input(event):
 	if event.is_action_pressed("click"):
 		
 		var global_mouse_pos = get_global_mouse_position()
-		if turno == 1:
+		
+		#Si la base desaparece, se pierde el juego
+		if get_node_or_null("base") == null:
+			print("GameOver")
+			
+		elif turno == 1:
 			if get_node_or_null("Craigh") != null:
 				get_node("Craigh")._pasos = get_node("Craigh")._rango
 				get_node("Craigh")._target_position = global_mouse_pos
 				get_node("Craigh")._change_state(get_node("Craigh").Estado.FOLLOW)
 				get_node("Craigh/Camera2D").current = true
 				yield(create_timer(3), "timeout")
-			
-			
 			
 			if get_node_or_null("Firebot") != null:
 				get_node("Firebot/Camera2D").current = true
@@ -105,8 +92,12 @@ func _unhandled_input(event):
 			elif get_node_or_null("hapbot") != null:
 				get_node("hapbot/Camera2D").current = true
 				turno = 3
+			#Pruebas
+			else:
+				get_node("generalcam").current = true
+				turno = 4
 			return
-		if turno == 2:
+		elif turno == 2:
 			if get_node_or_null("Firebot") != null:
 				get_node("Firebot")._pasos = get_node("Firebot")._rango
 				get_node("Firebot")._target_position = global_mouse_pos
@@ -114,26 +105,34 @@ func _unhandled_input(event):
 				get_node("Firebot/Camera2D").current = true
 				yield(create_timer(3), "timeout")
 			
-			
-			
 			if get_node_or_null("hapbot") != null:
 				get_node("hapbot/Camera2D").current = true
 				turno = 3
-			elif get_node_or_null("Craigh") != null:
-				get_node("Craigh/Camera2D").current = true
-				turno = 1
+			
+			#elif get_node_or_null("Craigh") != null:
+			#	get_node("Craigh/Camera2D").current = true
+			#	turno = 1
+			else:
+				get_node("generalcam").current = true
+				turno = 4
 			return
 			
-		if turno == 3:
+		elif turno == 3:
 			if get_node_or_null("hapbot") != null:
 				get_node("hapbot")._pasos = get_node("hapbot")._rango
 				get_node("hapbot")._target_position = global_mouse_pos
 				get_node("hapbot")._change_state(get_node("hapbot").Estado.FOLLOW)
 				get_node("hapbot/Camera2D").current = true
 				yield(create_timer(3), "timeout")
-			
+				get_node("generalcam").current = true
+				turno = 4
+			return
+		
+		#Prueba:
+		elif turno == 4:
 			get_node("generalcam").current = true
-			yield(create_timer(5), "timeout")
+			spawn()
+			#yield(create_timer(5), "timeout")
 			
 			if get_node_or_null("Craigh") != null:
 				get_node("Craigh/Camera2D").current = true
@@ -141,14 +140,12 @@ func _unhandled_input(event):
 			elif get_node_or_null("Firebot") != null:
 				get_node("Firebot/Camera2D").current = true
 				turno = 2
-			
-			print("antes spawn ",spawn_points)
-			spawn()
-			nuevo_spawn(caminos)
-			print("despues spawn ",spawn_points)
-			
-			return
-		
+			elif get_node_or_null("hapbot") != null:
+				get_node("hapbot/Camera2D").current = true
+				turno = 3
+			else:
+				print("GameOver")
+				
 		return
 
 

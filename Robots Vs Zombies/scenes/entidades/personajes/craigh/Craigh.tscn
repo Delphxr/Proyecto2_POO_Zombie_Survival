@@ -73,7 +73,7 @@ position = Vector2( 0, -20 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 7 )
 animation = "IDLE"
-frame = 1
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -89,6 +89,7 @@ shape = SubResource( 9 )
 
 [node name="Camera2D" parent="." index="5"]
 current = true
+zoom = Vector2( 1.5, 1.5 )
 [connection signal="area_entered" from="." to="." method="_on_Craigh_area_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
