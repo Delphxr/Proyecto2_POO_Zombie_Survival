@@ -47,12 +47,14 @@ func _process(_delta):
 			get_node("EfectoGameOver").show()
 			get_node("generalcam").current = true
 			get_node("Musica").stop()
+			gameover = true
 			
 		if get_node_or_null("Craigh") == null and get_node_or_null("Firebot") == null and get_node_or_null("hapbot") == null:
 			get_node("CanvasLayer/gameover").show()
 			get_node("EfectoGameOver").show()
 			get_node("generalcam").current = true
 			get_node("Musica").stop()
+			gameover = true
 
 
 func mover_zombies():
