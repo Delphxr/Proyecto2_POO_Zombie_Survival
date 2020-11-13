@@ -21,7 +21,7 @@ const enemies = [
 ]
 
 var jugadores = []
-
+var gameover = false
 
 #coordenadas de las tiles caminables
 onready var caminos = get_node("TileMap").get_used_cells_by_id(5)
@@ -41,17 +41,18 @@ func _ready():
 
 func _process(_delta):
 	#Si la base desaparece, se pierde el juego
-	
-	if get_node_or_null("base") == null:
-		get_node("CanvasLayer/gameover").show()
-		get_node("EfectoGameOver").show()
-		get_node("generalcam").current = true
-		get_node("Musica").stop()
-	if get_node_or_null("Craigh") == null and get_node_or_null("Firebot") == null and get_node_or_null("hapbot") == null:
-		get_node("CanvasLayer/gameover").show()
-		get_node("EfectoGameOver").show()
-		get_node("generalcam").current = true
-		get_node("Musica").stop()
+	if gameover == false:
+		if get_node_or_null("base") == null:
+			get_node("CanvasLayer/gameover").show()
+			get_node("EfectoGameOver").show()
+			get_node("generalcam").current = true
+			get_node("Musica").stop()
+			
+		if get_node_or_null("Craigh") == null and get_node_or_null("Firebot") == null and get_node_or_null("hapbot") == null:
+			get_node("CanvasLayer/gameover").show()
+			get_node("EfectoGameOver").show()
+			get_node("generalcam").current = true
+			get_node("Musica").stop()
 
 
 func mover_zombies():
@@ -178,6 +179,9 @@ func atacar(turn):
 	
 	if turn == 3:
 		actual = 0
+		zombies_vivos = get_tree().get_nodes_in_group("zombies")
+		for vivo in zombies_vivos:
+			vivo.atacando = false
 	
 	else:
 		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Ataque"
