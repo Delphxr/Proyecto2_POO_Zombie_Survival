@@ -124,6 +124,11 @@ func check_jugadores():
 #funcion para los turnos
 func turnos():
 	while true:
+		check_jugadores()
+		if turno != 3:
+			if jugadores[turno] == null:
+				turno = (turno+1)%4
+				continue
 		yield(jugar(turno),"completed")
 		turno = (turno+1)%4
 
@@ -172,10 +177,8 @@ func moverse(turn):
 
 # de aqui se manejan los turnos
 func atacar(turn):
-	
 	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
-	for vivo in zombies_vivos:
-		vivo.atacando = true
+	
 	
 	if turn == 3:
 		actual = 0
@@ -184,6 +187,10 @@ func atacar(turn):
 			vivo.atacando = false
 	
 	else:
+		zombies_vivos = get_tree().get_nodes_in_group("zombies")
+		for vivo in zombies_vivos:
+			vivo.atacando = true
+		
 		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Ataque"
 		yield(self,"nuevo_click")
 
