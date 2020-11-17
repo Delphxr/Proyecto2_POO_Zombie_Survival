@@ -20,6 +20,11 @@ const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn")
 ]
 
+const items = [
+	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn")
+]
+
 var jugadores = []
 var gameover = false
 
@@ -81,9 +86,16 @@ func spawn():
 		enemy.position = espacio
 		add_child(enemy)
 		enemy.add_to_group("zombies")
+		enemy.connect("muerto",self,"manejador_muerte")
 		print ("enemigo generado: " , enemy.name)
 		
 	pass
+
+func manejador_muerte(posicion):
+	var item = choose(items).instance()
+	item.position = posicion
+	add_child(item)
+	print ("item generado: " , item.name)
 
 func nuevo_spawn(tiles):
 	randomize()
@@ -192,6 +204,7 @@ func atacar(turn):
 		zombies_vivos = get_tree().get_nodes_in_group("zombies")
 		for vivo in zombies_vivos:
 			vivo.atacando = true
+			vivo.damage = jugadores[turn]._ataque
 		
 		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Ataque"
 		yield(self,"nuevo_click")
@@ -210,6 +223,7 @@ func atacar(turn):
 	zombies_vivos = get_tree().get_nodes_in_group("zombies")
 	for vivo in zombies_vivos:
 		vivo.atacando = false
+		vivo.damage = 1
 		
 	check_jugadores()
 	while true:

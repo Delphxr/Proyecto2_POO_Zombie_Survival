@@ -7,6 +7,7 @@
 [node name="Personaje" instance=ExtResource( 2 )]
 collision_mask = 9
 script = ExtResource( 1 )
+_ataque = 1
 
 [node name="Light2D" type="Light2D" parent="." index="0"]
 scale = Vector2( 2, 2 )

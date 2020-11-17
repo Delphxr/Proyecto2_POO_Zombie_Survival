@@ -8,6 +8,10 @@ export var _vida = 0
 export var _rango = 1
 export var speed = 50
 
+
+var damage = 1
+signal muerto
+
 enum Estado { IDLE, FOLLOW }
 
 
@@ -113,10 +117,11 @@ func _change_state(new_state):
 func quitarVida():
 	get_node("animacion").play("daño")
 	yield(self,"fin_animacion")
-	_vida -= 1
+	_vida -= damage
 	
 	if _vida <= 0:
 		print(self.name, " murió")
+		emit_signal("muerto",global_position)
 		self.queue_free()
 
 

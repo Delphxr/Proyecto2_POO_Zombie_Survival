@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/entidades/zombies/Zombie.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/efectos/daño3.wav" type="AudioStream" id=3]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 length = 0.3
 step = 0.01
 tracks/0/type = "value"
@@ -65,7 +65,7 @@ stream = ExtResource( 3 )
 volume_db = 4.727
 
 [node name="animacion" type="AnimationPlayer" parent="." index="6"]
-"anims/daño" = SubResource( 2 )
+"anims/daño" = SubResource( 1 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]
 [connection signal="animation_finished" from="animacion" to="." method="_on_animacion_animation_finished"]

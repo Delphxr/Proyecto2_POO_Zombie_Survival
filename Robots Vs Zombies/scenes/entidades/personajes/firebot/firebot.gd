@@ -20,6 +20,6 @@ func habDobleVida():
 	
 func _on_Firebot_area_entered(area):
 	print("Encontrada "  , area.name)
-	if area.name == "DobleVida":
+	if area.is_in_group("items_firebot"):
 		habDobleVida()
 		
