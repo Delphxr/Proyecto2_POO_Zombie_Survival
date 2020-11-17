@@ -22,7 +22,7 @@ light_mode = 1
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 16 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.541176, 0.262745, 0.313726, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -34,7 +34,7 @@ corner_radius_bottom_right = 5
 shadow_size = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.8, 0.411765, 0.486275, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -46,7 +46,7 @@ corner_radius_bottom_right = 5
 shadow_size = 2
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 16 )
 
 [node name="Game" type="YSort"]
@@ -59,7 +59,7 @@ position = Vector2( 1104, 656 )
 position = Vector2( 1136, 656 )
 _rango = 4
 
-[node name="hapbot" parent="." instance=ExtResource( 12 )]
+[node name="Hapbot" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1071.57, 657.281 )
 
 [node name="base" parent="." instance=ExtResource( 8 )]
@@ -180,10 +180,10 @@ margin_left = 8.0
 margin_top = 248.0
 margin_right = 56.0
 margin_bottom = 273.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = ExtResource( 9 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Item"
 __meta__ = {
 "_edit_use_anchors_": false

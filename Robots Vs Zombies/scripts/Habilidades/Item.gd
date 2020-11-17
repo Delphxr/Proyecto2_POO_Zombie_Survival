@@ -1,4 +1,4 @@
-extends "res://scripts/Habilidades/Habilidades.gd"
+extends Area2D
 
 export var nombre_item = ""
 signal recogido

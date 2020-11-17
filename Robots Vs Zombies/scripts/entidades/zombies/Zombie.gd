@@ -14,7 +14,7 @@ signal muerto
 
 enum Estado { IDLE, FOLLOW }
 
-
+var existo = true
 var casilla_act = Vector2()
 var _state = null
 

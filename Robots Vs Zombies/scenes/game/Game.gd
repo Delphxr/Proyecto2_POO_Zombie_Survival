@@ -17,13 +17,17 @@ export var max_turnos = 2
 const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn"),
 	preload("res://scenes/entidades/zombies/EnemyB/enemigoB.tscn"),
+	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn")
 ]
 
 const items = [
-	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
-	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
-	preload("res://scenes/Habilidades/HabilidadesGenerales/ItemRecogible.tscn")
+#	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
+#	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+	preload("res://scenes/Items/vida_base/bola.tscn")
 ]
 
 var jugadores = []
@@ -93,6 +97,9 @@ func spawn():
 	for espacio in zonas:
 		var enemy = choose(enemies).instance()
 		enemy.position = espacio
+		if enemy.existo == false:
+			enemy.queue_free()
+			return
 		add_child(enemy)
 		enemy.add_to_group("zombies")
 		enemy.connect("muerto",self,"manejador_muerte")
@@ -111,6 +118,7 @@ func manejador_muerte(posicion):
 #insertamos el item al inventario del personaje
 func insertar_item(nombre):
 	if turno != 3:
+		jugadores[turno].get_node("sound_item").play()
 		print("insertando: ",nombre, " a la cola de: ",jugadores[turno].name)
 		jugadores[turno].cola_items.append(nombre)
 
@@ -150,7 +158,7 @@ func check_jugadores():
 	jugadores = [
 		get_node_or_null("Craigh"),
 		get_node_or_null("Firebot"),
-		get_node_or_null("hapbot")
+		get_node_or_null("Hapbot")
 	]
 
 func cambiar_texto_boton():
@@ -194,7 +202,7 @@ func moverse(turn):
 	#mover jugadores
 	else:
 		get_node("CanvasLayer/mensaje").hide()
-		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Movimiento"
+		get_node("CanvasLayer/Label").text = str( jugadores[turn].name) + " Movimiento"
 		
 		yield(self,"nuevo_click")
 		var global_mouse_pos = get_global_mouse_position()
@@ -234,7 +242,7 @@ func atacar(turn):
 			vivo.atacando = true
 			vivo.damage = jugadores[turn]._ataque
 		
-		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Ataque"
+		get_node("CanvasLayer/Label").text = str( jugadores[turn].name) + " Ataque"
 		yield(self,"nuevo_click")
 
 		actual = turn +1 
@@ -277,10 +285,11 @@ func jugar(turn):
 func _on_Button_pressed():
 	if turno != 3:
 		if jugadores[turno].cola_items == []:
+			print("no hay items!")
 			return
 		jugadores[turno].usarItem()
+		jugadores[turno].get_node("sound_item").play()
 
 func dar_vida_base():
-	print("dando vida a la base")
 	if get_node_or_null("base") != null:
-		get_node_or_null("base").aumentar_vida()
+		get_node_or_null("base").curarse()
