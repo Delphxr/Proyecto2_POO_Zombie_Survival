@@ -21,8 +21,8 @@ const enemies = [
 ]
 
 const items = [
-#	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
-#	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
 	preload("res://scenes/Habilidades/HabilidadesGenerales/ItemRecogible.tscn")
 ]
 
@@ -37,9 +37,6 @@ onready var caminos = get_node("TileMap").get_used_cells_by_id(5)
 onready var spawn_points = get_node("TileMap").get_used_cells_by_id(8)
 var zonas = []
 
-const items2 = [
-	preload("res://scenes/Items/Salud/Bola.tscn")
-]
 
 func _ready():
 	add_user_signal("nuevo_click")
@@ -107,7 +104,8 @@ func manejador_muerte(posicion):
 	var item = choose(items).instance()
 	item.position = posicion
 	add_child(item)
-	item.connect("recogido",self,"insertar_item")
+	if item.is_in_group("items_general"):
+		item.connect("recogido",self,"insertar_item")
 	print ("item generado: " , item.name)
 
 #insertamos el item al inventario del personaje
