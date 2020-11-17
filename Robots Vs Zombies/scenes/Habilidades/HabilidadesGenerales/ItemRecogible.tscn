@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Habilidades/Habilidad.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Habilidades/CurarBase.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/gui/juego/caras.png" type="Texture" id=3]
+
+[node name="Item_recogible" groups=[
+"items_general",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+nombre_item = "bola"
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0.0748052, -0.399043 )
+scale = Vector2( 1.18718, 1.11463 )
+texture = ExtResource( 3 )
+hframes = 4
+frame = 3

@@ -15,9 +15,4 @@ func _on_Craigh_area_entered(area):
 	if area.is_in_group("items_craigh"):
 		habDobleRango()
 		print("Rango aumentado a " , _rango)
-		
-	#Recoge un item
-	if area.is_in_group("Item"):
-		itemEquipado[0] = area.nombreItem
-		itemEquipado[1] = area.tipo
-		print(itemEquipado[0], " obtenid@, tipo: ", itemEquipado[1])
+

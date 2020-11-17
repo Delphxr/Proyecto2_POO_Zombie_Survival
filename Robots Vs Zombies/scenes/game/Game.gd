@@ -21,8 +21,9 @@ const enemies = [
 ]
 
 const items = [
-	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
-	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn")
+#	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
+#	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesGenerales/ItemRecogible.tscn")
 ]
 
 var jugadores = []
@@ -36,18 +37,24 @@ onready var caminos = get_node("TileMap").get_used_cells_by_id(5)
 onready var spawn_points = get_node("TileMap").get_used_cells_by_id(8)
 var zonas = []
 
-const items = [
+const items2 = [
 	preload("res://scenes/Items/Salud/Bola.tscn")
 ]
 
 func _ready():
 	add_user_signal("nuevo_click")
 	add_user_signal("fin_turno")
+	
+	check_jugadores()
+	for player in jugadores:
+		player.connect("vida_base",self,"dar_vida_base")
+	
 	turnos()
 	spawn()
 	pass
 
 func _process(_delta):
+	cambiar_texto_boton()
 	#Si la base desaparece, se pierde el juego
 	if gameover == false:
 		if get_node_or_null("base") == null:
@@ -63,39 +70,15 @@ func _process(_delta):
 			get_node("generalcam").current = true
 			get_node("Musica").stop()
 			gameover = true
-	
-	#Pruebas con señal curarBase
-	#$Item.connect("curarBase", $base,"curarse")
-	if Input.is_action_just_pressed("usarItem"):
-		if turno != 3:
-			var indiceItem = jugadores[turno].usarItem()
-			
-			if indiceItem != -1:
-				var itemInstance = items[indiceItem].instance()
-				itemInstance.position = jugadores[turno].position
-				#itemInstance.efectoItem()
-				add_child(itemInstance)
-				#crearItem.connect("curarBase",$base, "curarse")
-				$Bola.connect("curarBase", self, "pruebaSenal")
-				itemInstance.efectoItem()
-				
-				print(itemInstance.name)
-				print("Se usó el item")
-				
-				#crearItem.queue_free()
-				
-			else:
-				print("No tiene items equipados")
 
-func pruebaSenal():
-	print("Señal recibida")
-
+#movemos los zombies
 func mover_zombies():
 	yield(create_timer(1), "timeout")
 	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
 	for vivo in zombies_vivos:
 		vivo.moverse()
 
+#obtenemos las casillas de spawn
 func get_spawn(tiles):
 	zonas = []
 	for point in tiles:
@@ -105,6 +88,7 @@ func get_spawn(tiles):
 		
 		zonas.append(point_temp)
 
+#generamos un zombie en los spawns
 func spawn():
 	get_spawn(spawn_points)
 	randomize()
@@ -123,8 +107,16 @@ func manejador_muerte(posicion):
 	var item = choose(items).instance()
 	item.position = posicion
 	add_child(item)
+	item.connect("recogido",self,"insertar_item")
 	print ("item generado: " , item.name)
 
+#insertamos el item al inventario del personaje
+func insertar_item(nombre):
+	if turno != 3:
+		print("insertando: ",nombre, " a la cola de: ",jugadores[turno].name)
+		jugadores[turno].cola_items.append(nombre)
+
+#creamos un nuevo tile de spawn
 func nuevo_spawn(tiles):
 	randomize()
 	var nueva = choose(tiles)
@@ -163,6 +155,15 @@ func check_jugadores():
 		get_node_or_null("hapbot")
 	]
 
+func cambiar_texto_boton():
+	if turno != 3:
+		if jugadores[turno].cola_items == []:
+			get_node("CanvasLayer/Label2").text = "Sin Items"
+		else:
+			get_node("CanvasLayer/Label2").text = jugadores[turno].cola_items[0]
+	else:
+		get_node("CanvasLayer/Label2").text = ""
+
 #funcion para los turnos
 func turnos():
 	while true:
@@ -196,6 +197,7 @@ func moverse(turn):
 	else:
 		get_node("CanvasLayer/mensaje").hide()
 		get_node("CanvasLayer/Label").text = "Turno " + str(turn+1) + " Movimiento"
+		
 		yield(self,"nuevo_click")
 		var global_mouse_pos = get_global_mouse_position()
 		check_jugadores()
@@ -263,14 +265,24 @@ func atacar(turn):
 			return false
 		actual+=1
 
-
-
 #orden de las jugadas
 func jugar(turn):
-	print(turn)
+	
 	moverse(turn)
 	yield(self,"fin_turno")
 	atacar(turn)
 	yield(self,"fin_turno")
 	
 
+
+#usar item al presionar boton
+func _on_Button_pressed():
+	if turno != 3:
+		if jugadores[turno].cola_items == []:
+			return
+		jugadores[turno].usarItem()
+
+func dar_vida_base():
+	print("dando vida a la base")
+	if get_node_or_null("base") != null:
+		get_node_or_null("base").aumentar_vida()

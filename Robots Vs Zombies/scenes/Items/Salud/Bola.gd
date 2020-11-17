@@ -1,9 +1,9 @@
 extends "res://scenes/Items/Item.gd"
 
+
 signal curarBase
 
 func _ready():
-	self.name = nombreItem
 	print("Nombre Item:" , self.name)
 	pass
 	

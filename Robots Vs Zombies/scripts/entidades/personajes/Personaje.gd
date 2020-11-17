@@ -9,7 +9,7 @@ export var _rango = 0
 export var speed = 0
 
 #Modificación para ítem
-var itemEquipado = ["",""]
+var cola_items = []
 
 enum Estado { IDLE, FOLLOW }
 
@@ -25,6 +25,9 @@ var _target_position = Vector2()
 
 var siguiendo = false
 
+
+#señales especiales de items
+signal vida_base
 
 
 
@@ -106,8 +109,9 @@ func curarse():
 
 func usarItem():
 	print("Función usar item")
-	if itemEquipado[0] == "Bola":
-		return 0
+	if cola_items[0] == "bola":
+		emit_signal("vida_base")
+		cola_items.remove(0)
 	else:
-		return -1
+		return 1
 		

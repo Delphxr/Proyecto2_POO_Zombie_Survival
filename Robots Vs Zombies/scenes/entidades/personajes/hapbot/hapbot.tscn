@@ -35,7 +35,9 @@ extents = Vector2( 8, 8 )
 
 [sub_resource type="RectangleShape2D" id=7]
 
-[node name="hapbot" instance=ExtResource( 2 )]
+[node name="hapbot" groups=[
+"Personajes",
+] instance=ExtResource( 2 )]
 _ataque = 2
 _vidaMaxima = 5
 _rango = 3
@@ -57,7 +59,7 @@ texture = ExtResource( 1 )
 position = Vector2( -0.12164, -20.505 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" parent="." index="3"]
