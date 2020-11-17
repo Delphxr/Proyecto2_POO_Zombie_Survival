@@ -31,6 +31,9 @@ onready var caminos = get_node("TileMap").get_used_cells_by_id(5)
 onready var spawn_points = get_node("TileMap").get_used_cells_by_id(8)
 var zonas = []
 
+const items = [
+	preload("res://scenes/Items/Salud/Bola.tscn")
+]
 
 func _ready():
 	add_user_signal("nuevo_click")
@@ -55,7 +58,32 @@ func _process(_delta):
 			get_node("generalcam").current = true
 			get_node("Musica").stop()
 			gameover = true
+	
+	#Pruebas con señal curarBase
+	#$Item.connect("curarBase", $base,"curarse")
+	if Input.is_action_just_pressed("usarItem"):
+		if turno != 3:
+			var indiceItem = jugadores[turno].usarItem()
+			
+			if indiceItem != -1:
+				var itemInstance = items[indiceItem].instance()
+				itemInstance.position = jugadores[turno].position
+				#itemInstance.efectoItem()
+				add_child(itemInstance)
+				#crearItem.connect("curarBase",$base, "curarse")
+				$Bola.connect("curarBase", self, "pruebaSenal")
+				itemInstance.efectoItem()
+				
+				print(itemInstance.name)
+				print("Se usó el item")
+				
+				#crearItem.queue_free()
+				
+			else:
+				print("No tiene items equipados")
 
+func pruebaSenal():
+	print("Señal recibida")
 
 func mover_zombies():
 	yield(create_timer(1), "timeout")

@@ -37,7 +37,9 @@ extents = Vector2( 6.82204, 6.46255 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10.4008, 10.9817 )
 
-[node name="Firebot" instance=ExtResource( 4 )]
+[node name="Firebot" groups=[
+"Personajes",
+] instance=ExtResource( 4 )]
 script = ExtResource( 5 )
 _vidaMaxima = 5
 _rango = 3
@@ -61,7 +63,7 @@ texture = ExtResource( 3 )
 position = Vector2( 0.142395, -20.8414 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" parent="." index="3"]
