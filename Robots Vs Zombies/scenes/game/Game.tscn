@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/images/gui/juego/gameover.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/gui/juego/hagaclick.png" type="Texture" id=15]
 [ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://scenes/Items/Salud/Bola.tscn" type="PackedScene" id=17]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -28,13 +29,16 @@ script = ExtResource( 4 )
 
 [node name="Craigh" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1104, 656 )
+collision_mask = 9
 
 [node name="Firebot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1136, 656 )
+collision_mask = 9
 _rango = 4
 
 [node name="hapbot" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1071.57, 657.281 )
+collision_mask = 9
 
 [node name="base" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1105.19, 768.531 )
@@ -144,4 +148,9 @@ text = "Turno 1: Movimiento"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Item" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1200.41, 622.303 )
+collision_layer = 1
+collision_mask = 1
 [connection signal="pressed" from="CanvasLayer/gameover" to="CanvasLayer/gameover" method="_on_TextureButton_pressed"]

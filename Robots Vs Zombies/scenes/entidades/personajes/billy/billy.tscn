@@ -15,7 +15,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 2, 2 )
 
-[node name="Billy" instance=ExtResource( 2 )]
+[node name="Billy" groups=[
+"Personajes",
+] instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 _rango = 20
 

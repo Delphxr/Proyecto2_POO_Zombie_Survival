@@ -8,6 +8,9 @@ var vidaActual = 0
 export var _rango = 0
 export var speed = 0
 
+#Modificación para ítem
+var itemEquipado = ["",""]
+
 enum Estado { IDLE, FOLLOW }
 
 
@@ -27,7 +30,7 @@ var siguiendo = false
 
 
 func _ready():
-	vidaActual = _vidaMaxima
+	vidaActual = _vidaMaxima-1
 	_change_state(Estado.IDLE)
 
 
@@ -92,4 +95,19 @@ func _on_HitBox_area_entered(_area):
 
 func _on_Personaje_area_entered(_area):
 	pass # Replace with function body.
-	
+
+#Prueba con las señales
+func curarse():
+	print ("Función curarse en: " , self.name)
+	if vidaActual < _vidaMaxima:
+		print("Base curada")
+		vidaActual += 1
+
+
+func usarItem():
+	print("Función usar item")
+	if itemEquipado[0] == "Bola":
+		return 0
+	else:
+		return -1
+		

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/items/bolaVerde.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/Salud/Bola.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 10.6633
+
+[node name="Item" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+nombreItem = "Bola"
+tipo = "Salud"
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.0567053, 0.0567053 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( -0.627977, -2.84564 )
+shape = SubResource( 1 )
