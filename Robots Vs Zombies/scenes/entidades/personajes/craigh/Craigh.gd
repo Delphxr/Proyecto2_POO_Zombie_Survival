@@ -1,7 +1,6 @@
 extends "res://scripts/entidades/personajes/Personaje.gd"
 
 func _ready():
-	
 	_rango = 4
 	pass
 	

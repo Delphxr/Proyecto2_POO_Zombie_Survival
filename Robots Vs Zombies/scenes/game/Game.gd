@@ -22,12 +22,9 @@ const enemies = [
 ]
 
 const items = [
-#	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
-#	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
-#	preload("res://scripts/otro/Nada.tscn"),
-#	preload("res://scripts/otro/Nada.tscn"),
-#	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scenes/Items/vida_base/bola.tscn")
+	preload("res://scenes/Items/vida_base/bola.tscn"),
+	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
+	preload("res://scenes/Items/Especiales/TeleBase.tscn")
 ]
 
 var jugadores = []
@@ -49,7 +46,9 @@ func _ready():
 	check_jugadores()
 	for player in jugadores:
 		player.connect("vida_base",self,"dar_vida_base")
-	
+		player.connect("orbe_curacion", self, "curar_todos_personajes")
+		player.connect("teletransport_base",self,"teletransport_base")
+		
 	turnos()
 	spawn()
 	pass
@@ -291,11 +290,16 @@ func _on_Button_pressed():
 		jugadores[turno].get_node("sound_item").play()
 
 func dar_vida_base():
+	print("Se usó la bola")
 	if get_node_or_null("base") != null:
 		get_node_or_null("base").curarse(3)
 		
 
-func curar_personajes():
+func curar_todos_personajes():
+	print("Se usó el OrbeCuración")
 	for jugador in jugadores:
-		if get_node_or_null(jugador.name) != null:
-			get_node_or_null(jugador.name).curarse(1)
+		jugador.curarse(1)
+
+func teletransport_base():
+	jugadores[turno].position = $base.position
+	jugadores[turno].position.y -= 50

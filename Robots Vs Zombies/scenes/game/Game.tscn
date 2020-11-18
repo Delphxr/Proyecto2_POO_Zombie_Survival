@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://assets/images/gui/juego/gameover.png" type="Texture" id=14]
 [ext_resource path="res://assets/images/gui/juego/hagaclick.png" type="Texture" id=15]
 [ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn" type="PackedScene" id=18]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -198,5 +200,11 @@ __meta__ = {
 
 [node name="DobleAtaque" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1008.49, 622.06 )
+
+[node name="DobleRango" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1009.85, 655.493 )
+
+[node name="DobleVida" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1231.61, 623.296 )
 [connection signal="pressed" from="CanvasLayer/gameover" to="CanvasLayer/gameover" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

@@ -13,7 +13,7 @@ func _ready():
 
 func habDobleVida():
 	get_node("sound_item").play()
-	_vidaMaxima += round(_vidaMaxima/2)
+	_vidaMaxima *= 2
 	vidaActual = _vidaMaxima
 	print("Vida aumentada a " , _vidaMaxima)
 	

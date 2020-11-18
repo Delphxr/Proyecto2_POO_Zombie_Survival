@@ -28,6 +28,8 @@ var siguiendo = false
 
 #señales especiales de items
 signal vida_base
+signal orbe_curacion
+signal teletransport_base
 
 
 
@@ -110,10 +112,19 @@ func curarse(curacion):
 
 
 func usarItem():
-	print("Función usar item")
+	print("Función usar item con ", cola_items[0])
 	if cola_items[0] == "bola":
 		emit_signal("vida_base")
 		cola_items.remove(0)
+	
+	elif cola_items[0] == "OrbeCuracion":
+		emit_signal("orbe_curacion")
+		cola_items.remove(0)
+		
+	elif cola_items[0] == "TeleBase":
+		emit_signal("teletransport_base")
+		cola_items.remove(0)
+		
 	else:
 		return 1
 		
