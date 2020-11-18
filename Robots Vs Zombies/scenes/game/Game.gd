@@ -27,12 +27,12 @@ const items = [
 	preload("res://scenes/Items/vida_base/bola.tscn"),
 	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
 	preload("res://scenes/Items/Especiales/TeleBase.tscn"),
-	preload("res://scenes/Items/Especiales/Granada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
+	preload("res://scenes/Items/Especiales/Granada.tscn")
+	#preload("res://scripts/otro/Nada.tscn"),
+	#preload("res://scripts/otro/Nada.tscn"),
+	#preload("res://scripts/otro/Nada.tscn"),
+	#preload("res://scripts/otro/Nada.tscn"),
+	#preload("res://scripts/otro/Nada.tscn"),
 
 ]
 
@@ -128,14 +128,27 @@ func manejador_muerte(posicion):
 	
 	
 	
-	var item = choose(items).instance()
-	item.position = posicion
-	add_child(item)
-	if item.is_in_group("nada"):
-		item.queue_free()
-	if item.is_in_group("items_general"):
-		item.connect("recogido",self,"insertar_item")
-	print ("item generado: " , item.name)
+	#var item = choose(items).instance()
+	#item.position = posicion
+	#add_child(item)
+	
+	var probabilidad = randi()%100+1
+	print(probabilidad)
+	
+	if probabilidad <= 50:
+		var item = choose(items).instance()
+		item.position = posicion
+		
+		if item.nombre_item == "Kaboom":
+			if probabilidad <= 20:
+				add_child(item)
+				item.connect("recogido",self,"insertar_item")
+				print ("item generado: " , item.name)
+		
+		else:
+			add_child(item)
+			item.connect("recogido",self,"insertar_item")
+			print ("item generado: " , item.name)
 
 #insertamos el item al inventario del personaje
 func insertar_item(nombre):
