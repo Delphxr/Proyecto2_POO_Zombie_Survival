@@ -92,11 +92,12 @@ func moverse():
 			return
 	
 	if ruido == true:
-		print ("siguiendo ruido")
-		_target_position = origen_ruido
-		_change_state(Estado.FOLLOW)
-		ruido = false
-		return
+		if _state != Estado.FOLLOW:
+			print ("siguiendo ruido")
+			_target_position = origen_ruido
+			_change_state(Estado.FOLLOW)
+			ruido = false
+			return
 	
 	_target_position = Vector2(1104,752)
 	_change_state(Estado.FOLLOW)

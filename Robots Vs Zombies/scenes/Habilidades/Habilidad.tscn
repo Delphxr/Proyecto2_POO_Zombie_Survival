@@ -52,4 +52,7 @@ hframes = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle_habilidad"
 anims/idle_habilidad = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+mode = 2
 [connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

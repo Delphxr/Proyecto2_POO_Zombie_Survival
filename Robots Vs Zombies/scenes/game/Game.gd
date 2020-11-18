@@ -27,14 +27,12 @@ const items = [
 	preload("res://scenes/Items/vida_base/bola.tscn"),
 	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
 	preload("res://scenes/Items/Especiales/TeleBase.tscn"),
-	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
-	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
-	preload("res://scenes/Habilidades/HabilidadesHapbot/DobleAtaque.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
+
 ]
 
 var jugadores = []
@@ -261,17 +259,18 @@ func atacar(turn):
 			vivo.atacando = false
 	
 	else:
-		for i in jugadores[turn].cantidad_ataques:
-			zombies_vivos = get_tree().get_nodes_in_group("zombies")
-			for vivo in zombies_vivos:
-				vivo.atacando = true
-				vivo.damage = jugadores[turn]._ataque
-			
-			get_node("CanvasLayer/Label").text = str( jugadores[turn].name) + " Ataque " + str(i+1)
-			yield(self,"nuevo_click")
+		check_jugadores()
+		if jugadores[turn] != null:
+			for i in jugadores[turn].cantidad_ataques:
+				zombies_vivos = get_tree().get_nodes_in_group("zombies")
+				for vivo in zombies_vivos:
+					vivo.atacando = true
+					vivo.damage = jugadores[turn]._ataque
+				
+				get_node("CanvasLayer/Label").text = str( jugadores[turn].name) + " Ataque " + str(i+1)
+				yield(self,"nuevo_click")
 
 		actual = turn +1 
-		jugadores[turn].cantidad_ataques = 1
 	
 	
 	yield(create_timer(0.01), "timeout")
@@ -332,8 +331,10 @@ func dar_vida_base():
 
 func curar_todos_personajes():
 	print("Se usó el OrbeCuración")
+	check_jugadores()
 	for jugador in jugadores:
-		jugador.curarse(1)
+		if jugador != null:
+			jugador.curarse(1)
 
 func VidaSolo():
 	jugadores[turno].curarse(1)
