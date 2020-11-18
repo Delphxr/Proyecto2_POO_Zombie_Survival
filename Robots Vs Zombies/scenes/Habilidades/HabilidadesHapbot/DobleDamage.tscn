@@ -6,6 +6,7 @@
 "habs_hapbot",
 ] instance=ExtResource( 1 )]
 nombre = "DobleDamage"
+personaje = "Hapbot"
 
 [node name="Sprite" parent="." index="1"]
 frame = 2
