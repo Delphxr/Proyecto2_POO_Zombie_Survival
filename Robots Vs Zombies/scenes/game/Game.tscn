@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -18,8 +18,9 @@
 [ext_resource path="res://assets/fonts/m5x7.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://scenes/Habilidades/HabilidadesHapbot/DobleAtaque.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Habilidades/HabilidadesCraigh/AumentoVision.tscn" type="PackedScene" id=19]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "kaboom"
 length = 0.5
 tracks/0/type = "value"
@@ -35,13 +36,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 0.529412, 0.529412, 0.529412, 1 ) ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=2]
 light_mode = 1
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 16 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.541176, 0.262745, 0.313726, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -53,7 +54,7 @@ corner_radius_bottom_right = 5
 shadow_size = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.8, 0.411765, 0.486275, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -65,7 +66,7 @@ corner_radius_bottom_right = 5
 shadow_size = 2
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 16 )
 
 [node name="Game" type="YSort"]
@@ -105,7 +106,7 @@ zoom = Vector2( 3.5, 3.5 )
 color = Color( 0.529412, 0.529412, 0.529412, 1 )
 
 [node name="efectokaboom" type="AnimationPlayer" parent="filtro oscuridad"]
-anims/kaboom = SubResource( 6 )
+anims/kaboom = SubResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -165,7 +166,7 @@ frame = 3
 
 [node name="gameover" type="TextureButton" parent="CanvasLayer"]
 visible = false
-material = SubResource( 1 )
+material = SubResource( 2 )
 margin_right = 512.0
 margin_bottom = 288.0
 texture_normal = ExtResource( 14 )
@@ -187,7 +188,7 @@ margin_left = 408.0
 margin_top = 272.0
 margin_right = 512.0
 margin_bottom = 286.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Turno 1: Movimiento"
@@ -200,7 +201,7 @@ margin_left = 8.0
 margin_top = 272.0
 margin_right = 112.0
 margin_bottom = 286.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Item"
@@ -213,10 +214,10 @@ margin_left = 8.0
 margin_top = 248.0
 margin_right = 56.0
 margin_bottom = 273.0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
 custom_styles/normal = ExtResource( 9 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Item"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -230,5 +231,8 @@ position = Vector2( 1648.52, 206.085 )
 
 [node name="DobleRango" parent="." instance=ExtResource( 10 )]
 position = Vector2( 559.783, 656.27 )
+
+[node name="AumentoVision" parent="." instance=ExtResource( 19 )]
+position = Vector2( 1009.41, 623.489 )
 [connection signal="pressed" from="CanvasLayer/gameover" to="CanvasLayer/gameover" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
