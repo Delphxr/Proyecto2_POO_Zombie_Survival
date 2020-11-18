@@ -1,15 +1,18 @@
 extends "res://scripts/entidades/personajes/Personaje.gd"
 
+var doble_ataque = false
+
 func _ready():
 	pass
 
-func habDobleAtaque():
-	_ataque *= 2
-	print("Ataque de " , self.name, " aumentado a ", _ataque)
-	
-	
 
-func _on_hapbot_area_entered(area):
+func hay_doble_danno():
+	get_node("sound_item").play()
+	cantidad_ataques = 2
+
+
+
+func _on_Hapbot_area_entered(area):
+	print("Encontrada "  , area.name)
 	if area.is_in_group("habs_hapbot"):
-		if area.nombre == "DobleAtaque":
-			habDobleAtaque()
+		hay_doble_danno()

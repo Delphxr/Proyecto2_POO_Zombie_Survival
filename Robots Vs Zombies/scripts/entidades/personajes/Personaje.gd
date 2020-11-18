@@ -7,6 +7,7 @@ export var _vidaMaxima = 0
 var vidaActual = 0
 export var _rango = 0
 export var speed = 0
+export var cantidad_ataques = 1
 
 #Modificación para ítem
 var cola_items = []
@@ -30,6 +31,9 @@ var siguiendo = false
 signal vida_base
 signal orbe_curacion
 signal teletransport_base
+signal teletransport_random
+signal VidaSolo
+signal kaboom
 
 
 
@@ -123,6 +127,18 @@ func usarItem():
 		
 	elif cola_items[0] == "TeleBase":
 		emit_signal("teletransport_base")
+		cola_items.remove(0)
+		
+	elif cola_items[0] == "TeleRandom":
+		emit_signal("teletransport_random")
+		cola_items.remove(0)
+	
+	elif cola_items[0] == "VidaSolo":
+		emit_signal("VidaSolo")
+		cola_items.remove(0)
+		
+	elif cola_items[0] == "Kaboom":
+		emit_signal("kaboom")
 		cola_items.remove(0)
 		
 	else:

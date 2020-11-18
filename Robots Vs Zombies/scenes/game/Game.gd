@@ -21,9 +21,20 @@ const enemies = [
 ]
 
 const items = [
+	preload("res://scenes/Items/Especiales/Kaboom.tscn"),
+	preload("res://scenes/Items/vida_base/VidaSolo.tscn"),
+	preload("res://scenes/Items/Especiales/TeleRand.tscn"),
 	preload("res://scenes/Items/vida_base/bola.tscn"),
 	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
-	preload("res://scenes/Items/Especiales/TeleBase.tscn")
+	preload("res://scenes/Items/Especiales/TeleBase.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesCraigh/DobleRango.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn"),
+	preload("res://scenes/Habilidades/HabilidadesHapbot/DobleAtaque.tscn"),
+	preload("res://scripts/otro/Nada.tscn"),
+	preload("res://scripts/otro/Nada.tscn"),
+	preload("res://scripts/otro/Nada.tscn"),
+	preload("res://scripts/otro/Nada.tscn"),
+	preload("res://scripts/otro/Nada.tscn"),
 ]
 
 var jugadores = []
@@ -47,6 +58,9 @@ func _ready():
 		player.connect("vida_base",self,"dar_vida_base")
 		player.connect("orbe_curacion", self, "curar_todos_personajes")
 		player.connect("teletransport_base",self,"teletransport_base")
+		player.connect("teletransport_random",self,"teletransport_random")
+		player.connect("VidaSolo",self,"VidaSolo")
+		player.connect("kaboom",self,"kaboom")
 		
 	turnos()
 	spawn()
@@ -117,6 +131,8 @@ func manejador_muerte(posicion):
 	var item = choose(items).instance()
 	item.position = posicion
 	add_child(item)
+	if item.is_in_group("nada"):
+		item.queue_free()
 	if item.is_in_group("items_general"):
 		item.connect("recogido",self,"insertar_item")
 	print ("item generado: " , item.name)
@@ -169,10 +185,12 @@ func check_jugadores():
 
 func cambiar_texto_boton():
 	if turno != 3:
-		if jugadores[turno].cola_items == []:
-			get_node("CanvasLayer/Label2").text = "Sin Items"
-		else:
-			get_node("CanvasLayer/Label2").text = jugadores[turno].cola_items[0]
+		check_jugadores()
+		if jugadores[turno] != null:
+			if jugadores[turno].cola_items == []:
+				get_node("CanvasLayer/Label2").text = "Sin Items"
+			else:
+				get_node("CanvasLayer/Label2").text = jugadores[turno].cola_items[0]
 	else:
 		get_node("CanvasLayer/Label2").text = ""
 
@@ -243,18 +261,22 @@ func atacar(turn):
 			vivo.atacando = false
 	
 	else:
-		zombies_vivos = get_tree().get_nodes_in_group("zombies")
-		for vivo in zombies_vivos:
-			vivo.atacando = true
-			vivo.damage = jugadores[turn]._ataque
-		
-		get_node("CanvasLayer/Label").text = str( jugadores[turn].name) + " Ataque"
-		yield(self,"nuevo_click")
+		for i in jugadores[turn].cantidad_ataques:
+			zombies_vivos = get_tree().get_nodes_in_group("zombies")
+			for vivo in zombies_vivos:
+				vivo.atacando = true
+				vivo.damage = jugadores[turn]._ataque
+			
+			get_node("CanvasLayer/Label").text = str( jugadores[turn].name) + " Ataque " + str(i+1)
+			yield(self,"nuevo_click")
 
 		actual = turn +1 
+		jugadores[turn].cantidad_ataques = 1
 	
 	
 	yield(create_timer(0.01), "timeout")
+	
+	
 	
 	zombies_vivos = get_tree().get_nodes_in_group("zombies")
 	for vivo in zombies_vivos:
@@ -296,6 +318,12 @@ func _on_Button_pressed():
 		jugadores[turno].usarItem()
 		jugadores[turno].get_node("sound_item").play()
 
+
+
+# -----------------------------------------
+
+
+
 func dar_vida_base():
 	print("Se usó la bola")
 	if get_node_or_null("base") != null:
@@ -307,6 +335,24 @@ func curar_todos_personajes():
 	for jugador in jugadores:
 		jugador.curarse(1)
 
+func VidaSolo():
+	jugadores[turno].curarse(1)
+
 func teletransport_base():
 	jugadores[turno].position = $base.position
 	jugadores[turno].position.y -= 50
+
+func teletransport_random():
+	randomize()
+	var nueva = choose(caminos)
+	var point_temp = Vector2()
+	point_temp.x = get_node("TileMap").map_to_world(nueva).x +16
+	point_temp.y = get_node("TileMap").map_to_world(nueva).y +16
+	jugadores[turno].position = point_temp
+
+func kaboom():
+	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
+	for vivo in zombies_vivos:
+		vivo.damage = 1
+		vivo.quitarVida()
+	pass

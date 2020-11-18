@@ -2,5 +2,7 @@
 
 [ext_resource path="res://scripts/otro/Nada.gd" type="Script" id=1]
 
-[node name="Nada" type="Node2D"]
+[node name="Nada" type="Node2D" groups=[
+"nada",
+]]
 script = ExtResource( 1 )

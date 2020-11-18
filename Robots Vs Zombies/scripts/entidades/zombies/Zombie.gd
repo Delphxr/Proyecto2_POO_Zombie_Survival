@@ -68,12 +68,6 @@ func create_timer(wait_time):
 func moverse():
 	_pasos = _rango
 	#yield(create_timer(4), "timeout")
-	if ruido == true:
-		print ("siguiendo ruido")
-		_target_position = origen_ruido
-		_change_state(Estado.FOLLOW)
-		ruido = false
-		return
 	
 	if get_parent().get_node_or_null("Craigh") != null:
 		if  overlaps_area(get_parent().get_node("Craigh")):
@@ -96,7 +90,14 @@ func moverse():
 			
 			_change_state(Estado.FOLLOW)
 			return
-		
+	
+	if ruido == true:
+		print ("siguiendo ruido")
+		_target_position = origen_ruido
+		_change_state(Estado.FOLLOW)
+		ruido = false
+		return
+	
 	_target_position = Vector2(1104,752)
 	_change_state(Estado.FOLLOW)
 	return

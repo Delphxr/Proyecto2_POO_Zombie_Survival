@@ -2,8 +2,8 @@
 
 [ext_resource path="res://scenes/Items/ItemRecogible.tscn" type="PackedScene" id=1]
 
-[node name="TeleBase" instance=ExtResource( 1 )]
-nombre_item = "TeleBase"
+[node name="Kaboom" instance=ExtResource( 1 )]
+nombre_item = "Kaboom"
 
 [node name="Sprite" parent="." index="1"]
-frame = 7
+frame = 8
