@@ -127,17 +127,14 @@ func manejador_muerte(posicion):
 		vivo.origen_ruido = posicion
 	
 	
-	
-	#var item = choose(items).instance()
-	#item.position = posicion
-	#add_child(item)
-	
+	#Probabilidad de generar un ítem cuando un zombie muere
 	var probabilidad = randi()%100+1
-	print(probabilidad)
+	print("Probabilidad de ítem: ", probabilidad)
 	
 	if probabilidad <= 50:
 		var item = choose(items).instance()
 		item.position = posicion
+		print("Item elegido: ", item.nombre_item)
 		
 		if item.nombre_item == "Kaboom":
 			if probabilidad <= 20:
