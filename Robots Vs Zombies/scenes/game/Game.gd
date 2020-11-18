@@ -17,7 +17,6 @@ export var max_turnos = 2
 const enemies = [
 	preload("res://scenes/entidades/zombies/EnemyA/EnemigoA.tscn"),
 	preload("res://scenes/entidades/zombies/EnemyB/enemigoB.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scenes/entidades/zombies/EnemyC/EnemigoC.tscn")
 ]
 
@@ -107,6 +106,14 @@ func spawn():
 	pass
 
 func manejador_muerte(posicion):
+	
+	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
+	for vivo in zombies_vivos:
+		vivo.ruido = true
+		vivo.origen_ruido = posicion
+	
+	
+	
 	var item = choose(items).instance()
 	item.position = posicion
 	add_child(item)

@@ -12,6 +12,9 @@ export var speed = 50
 var damage = 1
 signal muerto
 
+var ruido = false
+var origen_ruido = Vector2()
+
 enum Estado { IDLE, FOLLOW }
 
 var existo = true
@@ -65,6 +68,12 @@ func create_timer(wait_time):
 func moverse():
 	_pasos = _rango
 	#yield(create_timer(4), "timeout")
+	if ruido == true:
+		print ("siguiendo ruido")
+		_target_position = origen_ruido
+		_change_state(Estado.FOLLOW)
+		ruido = false
+		return
 	
 	if get_parent().get_node_or_null("Craigh") != null:
 		if  overlaps_area(get_parent().get_node("Craigh")):
