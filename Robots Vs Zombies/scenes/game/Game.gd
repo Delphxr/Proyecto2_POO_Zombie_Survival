@@ -22,17 +22,17 @@ const enemies = [
 
 const items = [
 	preload("res://scenes/Items/Especiales/Kaboom.tscn"),
-	preload("res://scenes/Items/vida_base/VidaSolo.tscn"),
-	preload("res://scenes/Items/Especiales/TeleRand.tscn"),
-	preload("res://scenes/Items/vida_base/bola.tscn"),
-	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
-	preload("res://scenes/Items/Especiales/TeleBase.tscn"),
-	preload("res://scenes/Items/Especiales/Granada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
-	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scenes/Items/vida_base/VidaSolo.tscn"),
+#	preload("res://scenes/Items/Especiales/TeleRand.tscn"),
+#	preload("res://scenes/Items/vida_base/bola.tscn"),
+#	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
+#	preload("res://scenes/Items/Especiales/TeleBase.tscn"),
+#	preload("res://scenes/Items/Especiales/Granada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
+#	preload("res://scripts/otro/Nada.tscn"),
 
 ]
 
@@ -120,12 +120,6 @@ func spawn():
 	pass
 
 func manejador_muerte(posicion):
-	
-	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
-	for vivo in zombies_vivos:
-		vivo.ruido = true
-		vivo.origen_ruido = posicion
-	
 	
 	
 	var item = choose(items).instance()
@@ -216,7 +210,14 @@ func moverse(turn):
 		mover_zombies()
 		
 		
+		
+		
 		yield(self,"nuevo_click")
+		
+		check_jugadores()
+		if jugadores[1] != null:
+			jugadores[1].curarse(1)
+		
 		spawn()
 		nuevo_spawn(caminos)
 		
@@ -318,6 +319,11 @@ func _on_Button_pressed():
 			return
 		jugadores[turno].usarItem()
 		jugadores[turno].get_node("sound_item").play()
+		
+		var zombies_vivos = get_tree().get_nodes_in_group("zombies")
+		for vivo in zombies_vivos:
+			vivo.ruido = true
+			vivo.origen_ruido = jugadores[turno].position
 
 
 
@@ -354,6 +360,8 @@ func teletransport_random():
 	jugadores[turno].position = point_temp
 
 func kaboom():
+	
+	get_node("filtro oscuridad/efectokaboom").play("kaboom")
 	var zombies_vivos = get_tree().get_nodes_in_group("zombies")
 	for vivo in zombies_vivos:
 		vivo.damage = 1
@@ -362,9 +370,19 @@ func kaboom():
 
 
 var areaGranada = preload("res://scripts/otro/AreaGranada.tscn")
+var scn_explosion = preload("res://scenes/Habilidades/Efectos visuales/explosion.tscn")
+
+func create_explosion():
+	var explosion = scn_explosion.instance()
+	explosion.position = jugadores[turno].position
+	add_child(explosion)
+	pass
+
 func granada():
 	print("Se activó la granada")
 	var areaGranadaIntance = areaGranada.instance()
-	jugadores[turno].add_child(areaGranadaIntance)
-	yield(create_timer(3), "timeout")
+	areaGranadaIntance.position = jugadores[turno].position
+	add_child(areaGranadaIntance)
+	create_explosion()
+	yield(create_timer(1), "timeout")
 	areaGranadaIntance.queue_free()
