@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://scenes/Habilidades/HabilidadesHapbot/DobleAtaque.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Habilidades/HabilidadesFirebot/DobleVida.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/Habilidades/HabilidadesCraigh/AumentoVision.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Habilidades/HabilidadesHapbot/DobleDamage.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "kaboom"
@@ -78,13 +79,12 @@ speed = 80
 
 [node name="Hapbot" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1072, 656 )
-_ataque = 2
 _vidaMaxima = 10
 _rango = 5
 speed = 75
 
 [node name="Firebot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1136, 656 )
+position = Vector2( 1137, 656 )
 _ataque = 1
 _vidaMaxima = 7
 _rango = 4
@@ -234,5 +234,8 @@ position = Vector2( 559.783, 656.27 )
 
 [node name="AumentoVision" parent="." instance=ExtResource( 19 )]
 position = Vector2( 1009.41, 623.489 )
+
+[node name="DobleDamage" parent="." instance=ExtResource( 20 )]
+position = Vector2( 1041.95, 623.661 )
 [connection signal="pressed" from="CanvasLayer/gameover" to="CanvasLayer/gameover" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

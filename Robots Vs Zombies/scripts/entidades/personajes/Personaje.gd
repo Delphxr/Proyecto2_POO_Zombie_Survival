@@ -8,6 +8,7 @@ var vidaActual = 0
 export var _rango = 0
 export var speed = 0
 export var cantidad_ataques = 1
+var escudo = false
 
 #Modificación para ítem
 var cola_items = []
@@ -93,13 +94,17 @@ func _on_HitBox_area_entered(_area):
 	
 	get_node("sonido").play()
 	
+	if escudo == false:
+		vidaActual -= 1
+		print("Vida restante: ", vidaActual)
 	
-	vidaActual -= 1
-	print("Vida restante: ", vidaActual)
+		if vidaActual <= 0:
+			self.queue_free()
+			print(self.name , " murió")
 	
-	if vidaActual <= 0:
-		self.queue_free()
-		print(self.name , " murió")
+	else:
+		escudo = false
+		print("Escudo desactivado")
 
 
 func _on_Personaje_area_entered(_area):

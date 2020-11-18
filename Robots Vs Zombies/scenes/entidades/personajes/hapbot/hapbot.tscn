@@ -40,7 +40,6 @@ extents = Vector2( 8, 8 )
 "Personajes",
 ] instance=ExtResource( 2 )]
 script = ExtResource( 6 )
-_ataque = 0
 
 [node name="Light2D" parent="." index="0"]
 texture = ExtResource( 4 )
