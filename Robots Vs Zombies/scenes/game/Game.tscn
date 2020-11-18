@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/entidades/personajes/firebot/firebot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/entidades/base/base.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/material/button.tres" type="StyleBox" id=9]
+[ext_resource path="res://scenes/Habilidades/HabilidadesHapbot/DobleAtaque.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/menu/barra.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/entidades/personajes/hapbot/hapbot.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/otro/boton_gameover.gd" type="Script" id=13]
@@ -57,10 +58,16 @@ position = Vector2( 1104, 656 )
 
 [node name="Firebot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1136, 656 )
+_ataque = 1
+_vidaMaxima = 5
 _rango = 4
+speed = 75
 
 [node name="Hapbot" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1071.57, 657.281 )
+_vidaMaxima = 5
+_rango = 4
+speed = 75
 
 [node name="base" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1104.79, 768.783 )
@@ -119,7 +126,7 @@ margin_left = 8.0
 margin_top = 64.0
 margin_right = 8.0
 margin_bottom = 64.0
-jugador = "hapbot"
+jugador = "Hapbot"
 frame = 2
 
 [node name="barra4" parent="CanvasLayer" instance=ExtResource( 11 )]
@@ -188,5 +195,8 @@ text = "Item"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DobleAtaque" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1008.49, 622.06 )
 [connection signal="pressed" from="CanvasLayer/gameover" to="CanvasLayer/gameover" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

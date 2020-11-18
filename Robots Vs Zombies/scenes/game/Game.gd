@@ -292,4 +292,10 @@ func _on_Button_pressed():
 
 func dar_vida_base():
 	if get_node_or_null("base") != null:
-		get_node_or_null("base").curarse()
+		get_node_or_null("base").curarse(3)
+		
+
+func curar_personajes():
+	for jugador in jugadores:
+		if get_node_or_null(jugador.name) != null:
+			get_node_or_null(jugador.name).curarse(1)

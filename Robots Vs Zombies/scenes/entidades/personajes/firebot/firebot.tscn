@@ -41,9 +41,7 @@ extents = Vector2( 10.4008, 10.9817 )
 "Personajes",
 ] instance=ExtResource( 4 )]
 script = ExtResource( 5 )
-_vidaMaxima = 5
-_rango = 3
-speed = 75
+_ataque = 0
 
 [node name="Light2D" parent="." index="0"]
 position = Vector2( 0.475662, 0.475655 )
@@ -63,6 +61,7 @@ texture = ExtResource( 3 )
 position = Vector2( 0.142395, -20.8414 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" parent="." index="3"]

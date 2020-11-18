@@ -31,7 +31,6 @@ signal vida_base
 
 
 
-
 func _ready():
 	vidaActual = _vidaMaxima
 	_change_state(Estado.IDLE)
@@ -100,11 +99,14 @@ func _on_Personaje_area_entered(_area):
 	pass # Replace with function body.
 
 #Prueba con las señales
-func curarse():
+func curarse(curacion):
 	print ("Función curarse en: " , self.name)
 	if vidaActual < _vidaMaxima:
 		print(name," se ha curado")
-		vidaActual += 1
+		vidaActual += curacion
+		
+		if vidaActual > _vidaMaxima:
+			vidaActual = _vidaMaxima
 
 
 func usarItem():
