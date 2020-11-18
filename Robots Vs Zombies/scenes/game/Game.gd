@@ -227,7 +227,7 @@ func moverse(turn):
 		yield(self,"nuevo_click")
 		
 		check_jugadores()
-		if jugadores[1] != null:
+		if jugadores[1] != null and jugadores[1].regeneracion == true:
 			jugadores[1].curarse(1)
 		
 		spawn()

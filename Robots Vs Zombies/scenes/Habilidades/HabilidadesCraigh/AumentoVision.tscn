@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Habilidades/Habilidad.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=2]
 
 [node name="AumentoVision" groups=[
 "items_craigh",
 ] instance=ExtResource( 1 )]
 nombre = "AumentoVision"
 personaje = "Craigh"
+
+[node name="Sprite" parent="." index="1"]
+frame = 11
+
+[node name="Light2D" parent="." index="3"]
+texture = ExtResource( 2 )
+texture_scale = 0.1
+color = Color( 0.447059, 0.976471, 0.454902, 1 )
+energy = 1.5

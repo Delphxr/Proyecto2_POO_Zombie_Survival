@@ -3,14 +3,18 @@
 [ext_resource path="res://scenes/Habilidades/Habilidad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/images/efectos/light2.png" type="Texture" id=2]
 
-[node name="DobleRango" groups=[
-"items_craigh",
+[node name="Regenerar" groups=[
+"items_firebot",
 ] instance=ExtResource( 1 )]
-nombre = "DobleRango"
-personaje = "Craigh"
+nombre = "Regenerar"
+personaje = "Firebot"
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, 0 )
+frame = 10
 
 [node name="Light2D" parent="." index="3"]
 texture = ExtResource( 2 )
 texture_scale = 0.1
-color = Color( 0.447059, 0.976471, 0.454902, 1 )
+color = Color( 1, 0.380392, 0.380392, 1 )
 energy = 1.5

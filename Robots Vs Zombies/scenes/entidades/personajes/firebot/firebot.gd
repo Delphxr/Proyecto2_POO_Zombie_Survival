@@ -1,6 +1,6 @@
 extends "res://scripts/entidades/personajes/Personaje.gd"
 
-
+var regeneracion = false
 #Firebot: Personaje tanque
 #Habilidades:
 #	Inicial: Retorna daño cuando un zombie le hace daño
@@ -21,5 +21,7 @@ func habDobleVida():
 func _on_Firebot_area_entered(area):
 	print("Encontrada "  , area.name)
 	if area.is_in_group("items_firebot"):
-		habDobleVida()
-		
+		if area.nombre == "DobleVida":
+			habDobleVida()
+		elif area.nombre == "Regenerar":
+			regeneracion = true
