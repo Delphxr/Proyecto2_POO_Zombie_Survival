@@ -34,6 +34,7 @@ signal teletransport_base
 signal teletransport_random
 signal VidaSolo
 signal kaboom
+signal granada
 
 
 
@@ -139,6 +140,10 @@ func usarItem():
 		
 	elif cola_items[0] == "Kaboom":
 		emit_signal("kaboom")
+		cola_items.remove(0)
+	
+	elif cola_items[0] == "Granada":
+		emit_signal("granada")
 		cola_items.remove(0)
 		
 	else:

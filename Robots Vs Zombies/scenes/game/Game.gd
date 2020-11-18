@@ -27,6 +27,7 @@ const items = [
 	preload("res://scenes/Items/vida_base/bola.tscn"),
 	preload("res://scenes/Items/vida_base/OrbeCuracion.tscn"),
 	preload("res://scenes/Items/Especiales/TeleBase.tscn"),
+	preload("res://scenes/Items/Especiales/Granada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
 	preload("res://scripts/otro/Nada.tscn"),
@@ -59,6 +60,7 @@ func _ready():
 		player.connect("teletransport_random",self,"teletransport_random")
 		player.connect("VidaSolo",self,"VidaSolo")
 		player.connect("kaboom",self,"kaboom")
+		player.connect("granada",self,"granada")
 		
 	turnos()
 	spawn()
@@ -357,3 +359,12 @@ func kaboom():
 		vivo.damage = 1
 		vivo.quitarVida()
 	pass
+
+
+var areaGranada = preload("res://scripts/otro/AreaGranada.tscn")
+func granada():
+	print("Se activó la granada")
+	var areaGranadaIntance = areaGranada.instance()
+	jugadores[turno].add_child(areaGranadaIntance)
+	yield(create_timer(3), "timeout")
+	areaGranadaIntance.queue_free()

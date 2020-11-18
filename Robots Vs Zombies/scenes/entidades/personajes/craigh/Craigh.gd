@@ -1,6 +1,7 @@
 extends "res://scripts/entidades/personajes/Personaje.gd"
 
 func _ready():
+	cola_items.append("Granada")
 	_rango = 4
 	pass
 	

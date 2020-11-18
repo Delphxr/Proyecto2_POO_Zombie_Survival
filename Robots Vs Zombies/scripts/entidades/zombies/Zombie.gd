@@ -144,6 +144,10 @@ func _on_Area2D_area_entered(area):
 	elif area.get_parent().name == "base":
 		print(self.name , " llegó a la base.")
 		self.queue_free()
+		
+	elif area.name == "AreaGranada":
+		print("Alcanzado por granada")
+		quitarVida()
 
 
 func _on_click_area_input_event(_viewport, event, _shape_idx):
