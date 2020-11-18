@@ -7,6 +7,7 @@ extends Node2D
 var turno = 0
 var actual = 0
 export var max_turnos = 2
+var puntos = 0
 
 # Called when the node enters the scene tree for the first time.
 
@@ -119,10 +120,11 @@ func spawn():
 		
 	pass
 
-func manejador_muerte(posicion):
+func manejador_muerte(posicion,points):
 	
 	
-	
+	puntos += points
+	get_node("CanvasLayer/barra5/Label").text = str(puntos)
 	#Probabilidad de generar un ítem cuando un zombie muere
 	var probabilidad = randi()%100+1
 	print("Probabilidad de ítem: ", probabilidad)

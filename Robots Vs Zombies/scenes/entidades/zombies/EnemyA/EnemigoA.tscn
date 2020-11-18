@@ -37,6 +37,7 @@ extents = Vector2( 56, 54.1731 )
 extents = Vector2( 14.9623, 19.5998 )
 
 [node name="EnemigoA" instance=ExtResource( 1 )]
+puntos = 2
 
 [node name="sombra" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.164706 )
@@ -48,6 +49,7 @@ texture = ExtResource( 3 )
 position = Vector2( 0.332169, -20.7604 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 5 )
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" parent="." index="2"]

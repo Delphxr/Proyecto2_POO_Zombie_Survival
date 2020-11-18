@@ -7,6 +7,7 @@ export var _ataque = 0
 export var _vida = 0
 export var _rango = 1
 export var speed = 50
+export var puntos = 0
 
 
 var damage = 1
@@ -132,7 +133,7 @@ func quitarVida():
 	
 	if _vida <= 0:
 		print(self.name, " murió")
-		emit_signal("muerto",global_position)
+		emit_signal("muerto",global_position,puntos)
 		self.queue_free()
 
 

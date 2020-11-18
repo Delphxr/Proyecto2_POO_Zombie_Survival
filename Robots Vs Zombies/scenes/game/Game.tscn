@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/tilesetdata/tileset/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/algoritmos/Astar_pathfinding/pathfind_astar.gd" type="Script" id=2]
@@ -37,6 +37,35 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 0.529412, 0.529412, 0.529412, 1 ) ]
 }
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.290196, 0.588235, 0.898039, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.160784, 0.211765, 0.435294, 1 )
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.160784, 0.211765, 0.435294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+shadow_color = Color( 0, 0, 0, 0.133333 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="DynamicFont" id=9]
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 16 )
 
 [sub_resource type="CanvasItemMaterial" id=2]
 light_mode = 1
@@ -165,6 +194,25 @@ margin_bottom = 16.0
 jugador = "base"
 frame = 3
 
+[node name="barra5" parent="CanvasLayer" instance=ExtResource( 11 )]
+margin_left = 400.0
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 40.0
+script = null
+
+[node name="Sprite" parent="CanvasLayer/barra5" index="0"]
+frame = 4
+
+[node name="ProgressBar" parent="CanvasLayer/barra5" index="1"]
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
+
+[node name="Label" parent="CanvasLayer/barra5" index="2"]
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+
 [node name="gameover" type="TextureButton" parent="CanvasLayer"]
 visible = false
 material = SubResource( 2 )
@@ -243,3 +291,5 @@ position = Vector2( 628.201, 173.293 )
 position = Vector2( 1104.09, 79.3145 )
 [connection signal="pressed" from="CanvasLayer/gameover" to="CanvasLayer/gameover" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
+
+[editable path="CanvasLayer/barra5"]
