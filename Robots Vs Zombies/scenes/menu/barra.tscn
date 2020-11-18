@@ -49,6 +49,7 @@ texture = ExtResource( 2 )
 hframes = 4
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+light_mask = 0
 margin_left = 16.0
 margin_top = -8.0
 margin_right = 106.0
@@ -63,6 +64,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
+light_mask = 0
 margin_left = 19.4184
 margin_top = -6.29079
 margin_right = 59.4184

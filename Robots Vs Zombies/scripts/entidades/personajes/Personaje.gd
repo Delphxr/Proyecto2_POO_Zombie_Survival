@@ -105,6 +105,7 @@ func _on_HitBox_area_entered(_area):
 	else:
 		escudo = false
 		print("Escudo desactivado")
+		get_node("escudo").hide()
 
 
 func _on_Personaje_area_entered(_area):
