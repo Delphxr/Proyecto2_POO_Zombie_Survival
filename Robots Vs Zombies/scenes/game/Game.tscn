@@ -202,13 +202,19 @@ margin_bottom = 40.0
 script = null
 
 [node name="Sprite" parent="CanvasLayer/barra5" index="0"]
+position = Vector2( 55.8491, 1.06914 )
 frame = 4
 
 [node name="ProgressBar" parent="CanvasLayer/barra5" index="1"]
+margin_left = 64.0
 custom_styles/fg = SubResource( 7 )
 custom_styles/bg = SubResource( 8 )
 
 [node name="Label" parent="CanvasLayer/barra5" index="2"]
+margin_left = 68.1365
+margin_top = -6.2829
+margin_right = 108.137
+margin_bottom = 7.7171
 custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
