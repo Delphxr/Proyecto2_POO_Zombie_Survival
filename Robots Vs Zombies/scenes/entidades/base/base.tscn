@@ -95,4 +95,10 @@ anims/light = SubResource( 4 )
 
 [node name="sonido" parent="." index="8"]
 stream = ExtResource( 4 )
+
+[node name="destinoZ" type="Position2D" parent="." index="9"]
+position = Vector2( 0.184021, -19.6152 )
+
+[node name="spawn" type="Position2D" parent="." index="10"]
+position = Vector2( 0, -52.3717 )
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

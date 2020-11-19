@@ -84,10 +84,10 @@ func moverse():
 			
 			_change_state(Estado.FOLLOW)
 			return
-	if get_parent().get_node_or_null("hapbot") != null:	
-		if  overlaps_area(get_parent().get_node("hapbot")):
+	if get_parent().get_node_or_null("Hapbot") != null:	
+		if  overlaps_area(get_parent().get_node("Hapbot")):
 			print("detectado Hapbot")
-			_target_position = get_parent().get_node("hapbot").global_position
+			_target_position = get_parent().get_node("Hapbot").global_position
 			
 			_change_state(Estado.FOLLOW)
 			return
@@ -100,7 +100,8 @@ func moverse():
 			ruido = false
 			return
 	
-	_target_position = Vector2(1104,752)
+	_target_position = get_parent().get_node("base/destinoZ").global_position
+	print("llendo a la base")
 	_change_state(Estado.FOLLOW)
 	return
 

@@ -78,7 +78,7 @@ func _process(_delta):
 			get_node("Musica").stop()
 			gameover = true
 			
-		if get_node_or_null("Craigh") == null and get_node_or_null("Firebot") == null and get_node_or_null("hapbot") == null:
+		if get_node_or_null("Craigh") == null and get_node_or_null("Firebot") == null and get_node_or_null("Hapbot") == null:
 			get_node("CanvasLayer/gameover").show()
 			get_node("EfectoGameOver").show()
 			get_node("generalcam").current = true
@@ -293,7 +293,6 @@ func atacar(turn):
 	yield(create_timer(0.01), "timeout")
 	
 	
-	
 	zombies_vivos = get_tree().get_nodes_in_group("zombies")
 	for vivo in zombies_vivos:
 		vivo.atacando = false
@@ -328,16 +327,18 @@ func jugar(turn):
 #usar item al presionar boton
 func _on_Button_pressed():
 	if turno != 3:
-		if jugadores[turno].cola_items == []:
-			print("no hay items!")
-			return
-		jugadores[turno].usarItem()
-		jugadores[turno].get_node("sound_item").play()
-		
-		var zombies_vivos = get_tree().get_nodes_in_group("zombies")
-		for vivo in zombies_vivos:
-			vivo.ruido = true
-			vivo.origen_ruido = jugadores[turno].position
+		check_jugadores()
+		if jugadores[turno] != null:
+			if jugadores[turno].cola_items == []:
+				print("no hay items!")
+				return
+			jugadores[turno].usarItem()
+			jugadores[turno].get_node("sound_item").play()
+			
+			var zombies_vivos = get_tree().get_nodes_in_group("zombies")
+			for vivo in zombies_vivos:
+				vivo.ruido = true
+				vivo.origen_ruido = jugadores[turno].position
 
 
 
@@ -362,8 +363,7 @@ func VidaSolo():
 	jugadores[turno].curarse(1)
 
 func teletransport_base():
-	jugadores[turno].position = $base.position
-	jugadores[turno].position.y -= 50
+	jugadores[turno].position = get_node("base/spawn").global_position
 
 func teletransport_random():
 	randomize()

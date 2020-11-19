@@ -116,11 +116,11 @@ volume_db = -7.429
 autoplay = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_left = 137.0
-margin_top = 169.0
-margin_right = 701.0
-margin_bottom = 363.0
-rect_scale = Vector2( 0.432907, 0.440846 )
+margin_left = 25.2811
+margin_top = 196.388
+margin_right = 589.281
+margin_bottom = 390.388
+rect_scale = Vector2( 0.308444, 0.314101 )
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
 expand = true
@@ -129,6 +129,23 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+direccion = "res://scenes/game/Game.tscn"
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+margin_left = 310.313
+margin_top = 196.388
+margin_right = 874.313
+margin_bottom = 390.388
+rect_scale = Vector2( 0.308444, 0.314101 )
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+expand = true
+stretch_mode = 3
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+direccion = "res://scenes/game/nivel2.tscn"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 229.968, 205.898 )
@@ -155,3 +172,4 @@ angle_random = 0.14
 scale_amount = 1.75
 scale_amount_random = 0.46
 [connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="TextureButton2" to="TextureButton2" method="_on_TextureButton_pressed"]
